@@ -3,9 +3,22 @@
     <h1>MySpigot</h1>
 
 		<p>Map of water spots in SoCal</p>  
-		<p>Find me in app/views/pages/home.html.erb</p>
 
   </div>
+
+ <div class="container">
+  	<div id='map' class='map pad2' style='height: 500px;'></div>
+		<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
+		var map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/light-v9',
+	    center: [-118.33, 33.83], // starting position [lng, lat]
+    	zoom: 10.5 // starting zoom
+		});
+		</script>
+</div>  
+
 </div>
 
 
