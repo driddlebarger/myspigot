@@ -15,22 +15,25 @@
         center: [-118.33, 33.83], // starting position [lng, lat]
         zoom: 10.5 // starting zoom
       });
+      var myLayer = L.mapbox.featurelayer().addTo(map);
 
-      var myLayer = L.mapbox.featureLayer()
-        .addTo(map);
-
-
+      myLayer.on('layeradd', function(e) {
+          var location
+          location = e.layer;
+      });
+    
       $.ajax({
           dataType: 'text',
-          url: '/locations.json',
+          url: './locations.json',
           success: function(data) {
-            var geojson;
-            geojson = $.parseJSON(data);
+            var geojson = $.parseJSON(data);
             return myLayer.setGeoJSON(geojson);
+          },
+          error:function() {
+            alert("Could not load the events");
           }
       }); 
-
-    });  
+    }); 
 
     </script>
 

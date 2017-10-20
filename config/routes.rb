@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  get 'pages/home'
   resources :locations
-  devise_for :users
+
   root 'pages#home'
+
+  devise_for :users
+
   get 'submit' => 'pages#submit'
 
 

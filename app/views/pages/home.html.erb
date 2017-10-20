@@ -8,17 +8,46 @@
 
  <div class="container">
   	<div id='map' class='map pad2' style='height: 500px;'></div>
-		<script>
-		mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
-		var map = new mapboxgl.Map({
-		container: 'map',
-		style: 'mapbox://styles/mapbox/light-v9',
-	    center: [-118.33, 33.83], // starting position [lng, lat]
-    	zoom: 10.5 // starting zoom
-		});
+    <script>
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
+    
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v9',
+        center: [-118.33, 33.83], // starting position [lng, lat]
+        zoom: 10.5 // starting zoom
+      });
+      //everything above this works
+
+  	  var locationdata = 'locations.json';
+  		// need to figure out how to get into acceptable GeoJson form...
+//		  };
 
 
-		</script>
+      map.on('load', function () {
+  // Add the data to your map as a layer
+		  map.addSource('location', {
+    		type: 'geojson',
+    		data: locationdata
+ 		  });
+
+
+		  map.addLayer({
+		    id: 'location',
+		    type: 'symbol',
+		    // Add a GeoJSON source containing place coordinates and information.
+		    source: 'location',
+		    // Update below to change the format
+		    layout: {
+      		  'icon-image': 'rocket-15',
+      		  'icon-allow-overlap': true,
+    		}
+
+		  })
+	  });
+	
+    </script>
 </div>  
 
 </div>

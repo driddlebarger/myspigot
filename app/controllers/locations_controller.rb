@@ -8,25 +8,22 @@ class LocationsController < ApplicationController
     @geojson = Array.new
 
 #added loop to pull location data and convert to JSON
-    @locations.each do |location|
+    @locations.each do |loc|
       @geojson << {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [location.longitude, location.latitude]
+          coordinates: [loc.longitude, loc.latitude]
         },
         properties: {
-          name: location.name,
-          address: location.address,
-          :'marker-color' => '#00607d',
-          :'marker-symbol' => 'circle',
-          :'marker-size' => 'medium'
+          name: loc.name,
         }
       }
+
+    
      end
       respond_to do |format|
         format.html
-        format.csv { send_data @locations.to_csv } #put into CSV format
         format.json { render json: @geojson }  # respond with the created JSON object
       end
 
