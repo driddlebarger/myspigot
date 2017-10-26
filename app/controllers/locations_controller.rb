@@ -5,29 +5,34 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     @locations = Location.all
-    @geojson = Array.new
+    @geojson = []
 
-#added loop to pull location data and convert to JSON
+#Loop to pull location data and put into @geojson array of hashes
     @locations.each do |loc|
       @geojson << {
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [loc.longitude, loc.latitude]
+        :type => 'Feature',
+        :geometry => {
+          :type => 'Point',
+          :coordinates => [loc.longitude, loc.latitude]
         },
-        properties: {
-          name: loc.name,
+        :properties => {
+          :name => loc.name,
         }
       }
-
-    
      end
-      respond_to do |format|
-        format.html
-        format.json { render json: @geojson }  # respond with the created JSON object
-      end
 
-  end
+#Add outer part of geojson format, put @geojson in as a hash value
+    @geojson_output = {
+      :type => "FeatureCollection",
+      :features => @geojson
+    }
+
+     respond_to do |format|
+       format.html
+       format.json { render json: JSON.pretty_generate(@geojson_output) }  # respond with the created JSON object
+     end
+
+end
 
   # GET /locations/1
   # GET /locations/1.json

@@ -17,7 +17,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'devise'
 gem 'leaflet-rails'
-
+gem 'active_model_serializers', '~> 0.8.3', require: true
+gem 'will_paginate'
+gem 'api-pagination'
 
 group :development, :test do
   gem 'byebug', platform: :mri

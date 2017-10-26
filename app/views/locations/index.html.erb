@@ -2,47 +2,6 @@
 
 
 
- <div class="container">
-    <div id='map' class='map pad2' style='height: 500px;'></div>
-    <script>
-    $(document).ready(function() {
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
-    
-      var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/light-v9',
-        center: [-118.33, 33.83], // starting position [lng, lat]
-        zoom: 10.5 // starting zoom
-      });
-      var myLayer = L.mapbox.featurelayer().addTo(map);
-
-      myLayer.on('layeradd', function(e) {
-          var location
-          location = e.layer;
-      });
-    
-      $.ajax({
-          dataType: 'text',
-          url: './locations.json',
-          success: function(data) {
-            var geojson = $.parseJSON(data);
-            return myLayer.setGeoJSON(geojson);
-          },
-          error:function() {
-            alert("Could not load the events");
-          }
-      }); 
-    }); 
-
-    </script>
-
-
-</div> 
-
-
-<!--
-
 <h1>Locations</h1>
 
 <table>
@@ -74,5 +33,3 @@
 <br>
 
 <%= link_to 'New Location', new_location_path %>
-
--->
