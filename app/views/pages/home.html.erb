@@ -1,14 +1,16 @@
-<div class="container-fluid">
+
+<div class="container-fluid" style='padding: 0px'>
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">WaterFinder</span>
         <span class="navbar-text">Map of free water spots in South Bay</span>
         <%= link_to "Add Location", "/submit", class: "btn btn-secondary" %>
     </nav>
+
  </div>
 
 <!-- Map container -->
- <div class="container-fluid">
-  	<div id='map' class='map pad2' style='height: 500px;'></div>
+ <div class="container-fluid" style='padding: 0px'>
+  	<div id='map' class='map'></div>
     <script>
 //  Mapbox GL code 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
@@ -65,11 +67,7 @@
 	
     </script>
 </div>  
-<div class="container-fluid">
-<h6><small>
- <%= link_to "About", "/about" %>
-</small></h6>
-</div>
+
 
 
 
