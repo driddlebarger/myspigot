@@ -1,15 +1,13 @@
-<div class="jumbotron jumbotron-fluid">
-  
-  <div class="container">
+<div class="container-fluid">
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">WaterFinder</span>
-        <span class="navbar-text">Map of free water spots in SoCal</span>
+        <span class="navbar-text">Map of free water spots in South Bay</span>
         <%= link_to "Add Location", "/submit", class: "btn btn-secondary" %>
     </nav>
-  </div>
+ </div>
 
-
- <div class="container">
+<!-- Map container -->
+ <div class="container-fluid">
   	<div id='map' class='map pad2' style='height: 500px;'></div>
     <script>
 //  Mapbox GL code 
@@ -56,11 +54,25 @@
               map.getCanvas().style.cursor = '';
           });
 
+          map.addControl(new mapboxgl.GeolocateControl({
+              positionOptions: {
+              enableHighAccuracy: true
+              },
+              trackUserLocation: true
+          }));
+
     });
 	
     </script>
 </div>  
-
+<div class="container-fluid">
+<h6><small>
+ <%= link_to "About", "/about" %>
+</small></h6>
 </div>
+
+
+
+
 
 

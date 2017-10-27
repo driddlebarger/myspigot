@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-
+<div class="container">
 
 <h1>Locations</h1>
 
@@ -35,4 +35,8 @@
 
 <br>
 
+<% if user_signed_in? %>
 <%= link_to 'New Location', new_location_path %>
+<% end %>
+
+</div>
