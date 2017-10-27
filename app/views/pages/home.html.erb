@@ -1,13 +1,4 @@
 
-<div class="container-fluid" style='padding: 0px'>
-    <nav class="navbar navbar-dark bg-dark">
-        <span class="navbar-brand mb-0 h1">WaterFinder</span>
-        <span class="navbar-text">Map of free water spots in South Bay</span>
-        <%= link_to "Add Location", "/submit", class: "btn btn-secondary" %>
-    </nav>
-
- </div>
-
 <!-- Map container -->
  <div class="container-fluid" style='padding: 0px'>
   	<div id='map' class='map'></div>
@@ -22,48 +13,57 @@
         zoom: 11.1 // starting zoom
       });
 
-      map.on('load', function () {
+       map.on('load', function () {
 
-    	  map.addSource('location', { type: 'geojson', data: 'locations.json' });
+          map.addSource('location', { type: 'geojson', data: 'locations.json' });
 
-  		  map.addLayer({
-  		    id: 'location',
-  		    type: 'symbol',
-  		    source: 'location',
-  		    layout: {
-        		  'icon-image': 'drinking-water-15',
-        		  'icon-allow-overlap': true,
-      		}
+          map.loadImage('<%= asset_path('watericon.png') %>', function(error, image) {
+              if (error) throw error;
+              map.addImage('watericon', image);
 
-		  })
+              map.addLayer({
+                id: 'location',
+                type: 'symbol',
+                source: 'location',
+                layout: {
+                    'icon-image': 'watericon',
+                    'icon-allow-overlap': true,
+                    'icon-size': 0.75
+                }
 
-          // When a click event occurs on a feature in the location layer, open a popup at the
-          // location of the feature, with description HTML from its properties.	  
-          map.on('click', 'location', function (e) {
-          new mapboxgl.Popup()
-            .setLngLat(e.features[0].geometry.coordinates)
-            .setHTML(e.features[0].properties.name)
-            .addTo(map);  
+              })
+
           });
+
+            // When a click event occurs on a feature in the location layer, open a popup at the
+            // location of the feature, with description HTML from its properties.    
+            map.on('click', 'location', function (e) {
+            new mapboxgl.Popup()
+              .setLngLat(e.features[0].geometry.coordinates)
+              .setHTML(e.features[0].properties.name)
+              .addTo(map);  
+            });
+    
+            // Change the cursor to a pointer when the mouse is over the location layer.
+            map.on('mouseenter', 'location', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'location', function () {
+                map.getCanvas().style.cursor = '';
+            });
+
+            map.addControl(new mapboxgl.GeolocateControl({
+                positionOptions: {
+                enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            }));
+
+      });
   
-          // Change the cursor to a pointer when the mouse is over the location layer.
-          map.on('mouseenter', 'location', function () {
-              map.getCanvas().style.cursor = 'pointer';
-          });
 
-          // Change it back to a pointer when it leaves.
-          map.on('mouseleave', 'location', function () {
-              map.getCanvas().style.cursor = '';
-          });
-
-          map.addControl(new mapboxgl.GeolocateControl({
-              positionOptions: {
-              enableHighAccuracy: true
-              },
-              trackUserLocation: true
-          }));
-
-    });
 	
     </script>
 </div>  
