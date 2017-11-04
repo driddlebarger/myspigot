@@ -11,8 +11,8 @@ class Submission < MailForm::Base
   def headers
     {
       :subject => "New Location Submission",
-      :to => "your_email@example.org",
-      :from => "your_email@example.org"
+      :to => "driddlebarger@gmail.com",
+      :from => "driddlebarger@gmail.com"
     }
   end
 end
