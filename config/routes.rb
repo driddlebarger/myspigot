@@ -8,11 +8,16 @@ Rails.application.routes.draw do
 
   devise_scope :user do
   	get '/login', to: 'devise/sessions#new'
-  	get '/logout', to: 'devise/sessions#destroy', as: :signout
+  	delete '/logout', to: 'devise/sessions#destroy', as: :signout
   end
 
+  
+  match '/submissions', to: 'submissions#new', via: 'get'
+  resources "submissions", only: [:new, :create]
+
+
   get 'submit' => 'pages#submit'
-  get 'about' => 'pages#about'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

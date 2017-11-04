@@ -1,0 +1,40 @@
+
+
+<h2>Add a New Location</h2>
+<p>Add a new water spot to our database!</p>
+
+  <%= form_for @submission do |f| %>
+
+  <%= f.label :name %><br>
+  <%= f.text_field :name, required: true %>
+  <br>
+
+  <%= f.label :description %><br>
+  <%= f.text_area :description, required: true, as: :text %>
+  <br>
+
+  <%= f.label :latitude %><br>
+  <%= f.text_field :latitude %>
+  <br>
+
+  <%= f.label :longitude %><br>
+  <%= f.text_field :longitude %> 
+  <br>
+
+  <div class="hidden">
+    <%= f.label :nickname %><br>
+    <%= f.text_field :nickname, hint: 'leave this field blank' %>
+  </div>
+
+  <%= f.submit 'Submit', class: "btn btn-secondary" %>
+  <% end %>
+
+
+
+
+
+
+
+
+
+
