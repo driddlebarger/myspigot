@@ -12,11 +12,12 @@ Rails.application.routes.draw do
   end
 
   
+  get 'submit' => "submissions#new"
   match '/submissions', to: 'submissions#new', via: 'get'
   resources "submissions", only: [:new, :create]
 
 
-  get 'submit' => 'pages#submit'
+  #get 'submit' => 'pages#submit'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

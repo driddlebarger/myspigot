@@ -10,7 +10,7 @@ class Submission < MailForm::Base
   # in ActionMailer accepts.
   def headers
     {
-      :subject => "New Location Submission",
+      :subject => "Waterfinder: New Location Submission",
       :to => "driddlebarger@gmail.com",
       :from => "driddlebarger@gmail.com"
     }

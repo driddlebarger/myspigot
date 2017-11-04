@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myspigot</title>
+    <title>WaterFinder</title>
     <%= csrf_meta_tags %>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -45,7 +45,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <span class="navbar-brand mb-0 h1">WaterFinder</span>
+    <span class="navbar-brand mb-0 h1"><%=link_to "WaterFinder", root_path, class: "text-white" %></span>
     <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %>
 
   </nav>
