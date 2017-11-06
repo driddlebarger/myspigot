@@ -55,12 +55,12 @@
 
 </div>
 
-	  <%= yield %>
-
     <!-- flash messages -->
     <% flash.each do |name, message| %>
       <%= content_tag(:div, message, class: "alert alert-info #{name}") %>
     <% end %>
+
+	  <%= yield %>
      
   </body>
 </html>

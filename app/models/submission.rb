@@ -12,7 +12,7 @@ class Submission < MailForm::Base
     {
       :subject => "Waterfinder: New Location Submission",
       :to => "driddlebarger@gmail.com",
-      :from => "davidriddlebarger@yahoo.com"
+      :from => "driddlebarger@gmail.com"
     }
   end
 end
