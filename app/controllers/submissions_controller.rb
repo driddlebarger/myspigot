@@ -6,7 +6,7 @@ class SubmissionsController < ApplicationController
   def create
     @submission = Submission.new(params[:submission])
     @submission.request = request
-    if @contact.deliver
+    if @submission.deliver
     	flash.now[:error] = nil
     	redirect_to root_path, notice: "Thanks for your submission!"
     else
