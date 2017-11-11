@@ -2,6 +2,7 @@
 
 <h2>Add a New Location</h2>
 <p>Add a new water spot to our database!</p>
+<p><button onclick="getLocation()">Current Location</button></p>
 
   <%= form_for @submission do |f| %>
 
@@ -15,16 +16,14 @@
   <%= f.text_area :description, required: true, as: :text, class: "form-control", rows: "3", placeholder: "Describe the location -- how can we find it? Is it next to any landmarks?" %>
   </div>
 
-  <h5>Advanced:</h5>
-
   <div class="form-group">
   <%= f.label :latitude %>
-  <%= f.text_field :latitude, class: "form-control", placeholder: "e.g. 33.73" %>
+  <%= f.text_field :latitude, class: "form-control", placeholder: "Enter latitude OR press Current Location button", id: "latitude" %>
   </div>
 
   <div class="form-group">
   <%= f.label :longitude %>
-  <%= f.text_field :longitude, class: "form-control", placeholder: "e.g. -118.33" %> 
+  <%= f.text_field :longitude, class: "form-control", placeholder: "Enter longitude OR press Current Location button", id: "longitude" %> 
   </div>
 
   <div class="hidden">
@@ -34,6 +33,26 @@
 
   <%= f.submit 'Submit', class: "btn btn-secondary" %>
   <% end %>
+
+      <script>
+      function getLocation() {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+              // need to update this code...
+              x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+      }
+      function showPosition(position) {
+          var lat = position.coords.latitude;
+          document.getElementById("latitude").value = lat;
+
+          var lon = position.coords.longitude;
+          document.getElementById("longitude").value = lon;
+
+      }
+      </script>
+
 
 </div>
 
