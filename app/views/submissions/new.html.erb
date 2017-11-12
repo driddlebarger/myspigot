@@ -2,13 +2,13 @@
 
 <script>
   var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
-  document.getElementById('getlocation').addEventListener(touchEvent, getLocation);
+  document.getElementById('loc').addEventListener(touchEvent, getLocation);
 </script>
 
 
 <h2>Add a New Location</h2>
 <p>Add a new water spot to our database!</p>
-<p><button onclick="getLocation()" class="btn btn-secondary" id="getlocation">Current Location</button></p>
+<p><button class="btn btn-secondary" id="loc">Current Location</button></p>
 
   <%= form_for @submission do |f| %>
 
