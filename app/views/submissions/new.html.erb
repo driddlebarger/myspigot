@@ -2,7 +2,6 @@
 
 <script>
   var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
-  document.getElementById('loc').addEventListener(touchEvent, getLocation);
 </script>
 
 
@@ -41,6 +40,8 @@
   <% end %>
 
       <script>
+      document.getElementById('loc').addEventListener(touchEvent, getLocation);
+
       function getLocation() {
           if (navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(showPosition);
