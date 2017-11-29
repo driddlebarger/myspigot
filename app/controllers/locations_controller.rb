@@ -18,6 +18,7 @@ class LocationsController < ApplicationController
         },
         :properties => {
           :name => loc.name,
+          :description => loc.description
         }
       }
      end
