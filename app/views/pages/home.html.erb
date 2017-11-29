@@ -42,7 +42,7 @@
 
             new mapboxgl.Popup()
               .setLngLat(e.features[0].geometry.coordinates)
-              .setHTML('<h5>' + e.features[0].properties.name + '</h5><p>' + e.features[0].properties.description + '</p>')
+              .setHTML('<b>' + e.features[0].properties.name + '</b><p>' + e.features[0].properties.description + '</p>')
               .addTo(map);  
             });
     
