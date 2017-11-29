@@ -8,7 +8,7 @@
   <thead>
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Address</th>
+      <th scope="col">Description</th>
       <th scope="col">Latitude</th>
       <th scope="col">Longitude</th>
       <th colspan="3"></th>
@@ -19,7 +19,7 @@
     <% @locations.each do |location| %>
       <tr>
         <th scope="col"><%= location.name %></th>
-        <td><%= location.address %></td>
+        <td><%= location.description %></td>
         <td><%= location.latitude %></td>
         <td><%= location.longitude %></td>
         <% if user_signed_in? %>
