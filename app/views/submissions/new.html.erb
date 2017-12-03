@@ -1,34 +1,40 @@
-<div class="container" style="padding-top: 20px">
+<div class="wrapper">
 
 <script>
   var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
 </script>
 
-
+<div class="form-signin">
 <h2>Add a New Location</h2>
 <p>Add a new water spot to our database!</p>
-<p><button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" id="loc">Current Location</button></p>
+<p><button class="btn btn-lg btn-primary btn-block" data-toggle="button" aria-pressed="false" autocomplete="off" id="loc">Current Location</button></p>
 
   <%= form_for @submission do |f| %>
 
   <div class="form-group">
-  <%= f.label :name %>
+  Name
+  <div class="form-control">
   <%= f.text_field :name, required: true, class: "form-control", placeholder: "e.g. Top of PV Switchbacks" %>
+  </div>
   </div>
 
   <div class="form-group">
-  <%= f.label :description %>
+  Description
   <%= f.text_area :description, required: true, as: :text, class: "form-control", rows: "3", placeholder: "Describe the location -- how can we find it? Is it next to any landmarks?" %>
   </div>
 
   <div class="form-group">
-  <%= f.label :latitude %>
-  <%= f.text_field :latitude, class: "form-control", placeholder: "Enter latitude OR press Current Location", id: "latitude" %>
+  Latitude
+  <div class="form-control">
+  <%= f.text_field :latitude, class: "form-control", placeholder: "Enter OR press Current Location", id: "latitude" %>
+  </div>
   </div>
 
   <div class="form-group">
-  <%= f.label :longitude %>
-  <%= f.text_field :longitude, class: "form-control", placeholder: "Enter longitude OR press Current Location", id: "longitude" %> 
+  Longitude
+  <div class="form-control">
+  <%= f.text_field :longitude, class: "form-control", placeholder: "Enter OR press Current Location", id: "longitude" %> 
+  </div>
   </div>
 
   <div class="hidden">
@@ -36,8 +42,10 @@
     <%= f.text_field :nickname, hint: 'leave this field blank' %>
   </div>
 
-  <%= f.submit 'Submit', class: "btn btn-secondary" %>
+  <div class="form-group">
+  <%= f.submit 'Submit', class: "btn btn-lg btn-primary btn-block" %>
   <% end %>
+  </div>
 
       <script>
       document.getElementById('loc').addEventListener(touchEvent, getLocation);
@@ -59,5 +67,5 @@
       }
       </script>
 
-
+</div>
 </div>
