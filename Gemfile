@@ -21,6 +21,8 @@ gem 'active_model_serializers', '~> 0.8.3', require: true
 gem 'will_paginate'
 gem 'api-pagination'
 gem 'mail_form'
+gem 'activeadmin'
+gem 'kaminari'
 
 
 group :development, :test do

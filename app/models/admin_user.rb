@@ -1,7 +1,6 @@
-class User < ApplicationRecord
-  validates_acceptance_of :terms, :allow_nil => false, :accept => "true", :on => :create
+class AdminUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 end
