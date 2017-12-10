@@ -22,7 +22,7 @@
         <td><%= location.description %></td>
         <td><%= location.latitude %></td>
         <td><%= location.longitude %></td>
-        <% if user_signed_in? %>
+        <% if current_admin_user %>
             <td><%= link_to 'Show', location %></td>
             <td><%= link_to 'Edit', edit_location_path(location) %></td>
             <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,7 +35,7 @@
 
 <br>
 
-<% if user_signed_in? %>
+<% if current_admin_user %>
 <%= link_to 'New Location', new_location_path %>
 <% end %>
 
