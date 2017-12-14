@@ -11,6 +11,7 @@ before_action :authenticate_user!
     if @submission.deliver
     	flash.now[:error] = nil
     	redirect_to root_path, notice: "Thanks for your submission!"
+      current_user.increment!(:count, 1)
     else
     	flash.now[:error] = 'Submission could not be completed.'
     	render :new
