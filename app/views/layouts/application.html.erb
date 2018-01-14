@@ -45,9 +45,10 @@
         
 
         <div class="row">
-            <h4 class="text-white">Map of free water spots in SoCal</h4>
+            <h4 class="text-white">WaterSpotter Beta (Los Angeles)</h4>
             <span class="text-muted">Our goal is to collaborate to build a list of all the free water fountains in our area, so we can ride our bikes, run, hike, and explore new places without worrying about running out of water.</span>
-            <span class="text-muted"><%= link_to "Disclaimer", "https://termsfeed.com/disclaimer/c69648ddcd75ffbaada76f2ebd14b3be", class: "text-white" %></span>
+            <small><span class="text-muted"><%= link_to "Terms & Conditions", "/terms", class: "text-white" %></span>   |   </small>
+            <small><span class="text-muted"><%= link_to "Privacy Policy", "/privacy", class: "text-white" %></span></small><br>
         </div>
       <% if user_signed_in? %>
         <div class="row">
@@ -63,7 +64,12 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <span class="navbar-brand mb-0 h1"><%=link_to "WaterSpotter", root_path, class: "text-white" %></span>
-    <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %>
+    
+    <% if user_signed_in? %>
+      <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %>
+     <% else %>
+      <%= link_to "Add Location", new_user_registration_path, class: "btn navbar-toggler" %>
+    <% end %>
 
   </nav>
   </span>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: "registrations" }
 
   devise_scope :user do
   	get '/login', to: 'devise/sessions#new'
@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   get 'submit' => "submissions#new"
   match '/submissions', to: 'submissions#new', via: 'get'
   resources "submissions", only: [:new, :create]
+
+
+  get 'terms' => "pages#terms"
+  get 'privacy' => "pages#privacy"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,6 +1,13 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "map_styling";
+@import "font-awesome";
+@import "bootstrap-social";
 @import "bootstrap";
 
+/*
+ *= require font-awesome
+ */
+ 
 //= require leaflet
+
 

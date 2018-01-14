@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap', '~> 4.0.0.beta'
+gem 'font-awesome-rails'
 gem 'devise'
 gem 'leaflet-rails'
 gem 'active_model_serializers', '~> 0.8.3', require: true
@@ -23,6 +24,8 @@ gem 'api-pagination'
 gem 'mail_form'
 gem 'activeadmin'
 gem 'kaminari'
+gem 'omniauth-facebook'
+gem 'omniauth-oauth2', '~> 1.3.1'
 
 
 group :development, :test do
