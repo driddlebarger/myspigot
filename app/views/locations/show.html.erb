@@ -1,24 +1,84 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper">
 
-<p>
-  <strong>Name:</strong>
-  <%= @location.name %>
-</p>
+	<div class="map-small">
+	<!-- replace with static Mapbox URL using their API
 
-<p>
-  <strong>Description:</strong>
-  <%= @location.description %>
-</p>
+	Static map centered on: location.latitude, location.longitude
+	Starting zoom: ???? have to check
+	Size: 380px x 100px (maybe go taller...150px)
+	Style: mapbox light-v9
+	Access token: pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ
+	Add marker using watericon.png at location.latitude, location.longitude
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @location.latitude %>
-</p>
+	https://api.mapbox.com/styles/v1/mapbox/light-v9/static/url-    .png(lon, lat)/long,lat,zoom/380x100{@2x}?access_token=""
+	url- percent encoded URL for the image, can be jpg or png
 
-<p>
-  <strong>Longitude:</strong>
-  <%= @location.longitude %>
-</p>
 
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+	-->
+	<%= image_tag 'map-test.png' %>
+	</div>
+
+  <div class="form-signin">
+
+	<!-- what does this do???
+	<p id="notice"><%= notice %></p>
+	-->
+
+	<small style="text-align:right" class="form-text text-muted">
+		<%= link_to 'Close', root_path %>
+	</small>
+
+  		<h4>
+  		<%= @location.name %>
+  		</h4>
+
+	<p>
+ 		<%= @location.description %>
+	</p>
+
+	<hr>
+
+	<p>
+		<small class="form-text text-muted">
+  		<strong>Latitude:</strong>
+  		<%= @location.latitude %>
+  		</small>
+	</p>
+
+	<p>
+		<small class="form-text text-muted">
+  		<strong>Longitude:</strong>
+  		<%= @location.longitude %>
+  		</small>
+	</p>
+
+	<hr>
+
+	<p>
+		<small class="form-text text-muted">
+		<strong>Added:</strong>
+			<%= @location.created_at.strftime("%m-%d-%Y") %>
+		</small>
+	</p>
+
+	<p>
+	<small class="form-text text-muted">
+		This location has been verified <strong>XXX</strong> times
+	</small>
+	</p>
+
+<div class="row">
+	<div class="col">
+	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, "/", class: "btn btn-primary btn-block" %>
+	</div>
+	<div class="col">
+	<%= link_to '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Flag'.html_safe, "/", class: "btn btn-danger btn-block" %> 
+	</div>
+</div>
+
+	<!-- This should be deleted. Only going to edit via back end
+		<%= link_to 'Edit', edit_location_path(@location) %> |
+	-->
+
+  </div>
+</div>
