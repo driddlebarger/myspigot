@@ -26,6 +26,12 @@ html, body {
   border: 1px solid rgba(0,0,0,0.1); 
 }
 
+.mapboxgl-popup {
+width: 300px;
+font: 14px/20px 'Open Sans', sans-serif;
+border-radius: 10px;
+}
+
 .hidden {
   display: none;
 }
@@ -82,4 +88,8 @@ body {
     outline: none;
   }
 
+
+
 }
+
+

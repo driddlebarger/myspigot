@@ -42,10 +42,15 @@
 
             new mapboxgl.Popup()
               .setLngLat(e.features[0].geometry.coordinates)
-              .setHTML('<b>' + e.features[0].properties.name + '</b><p>' + e.features[0].properties.description + '</p>')
+              .setHTML('<div><b>' + e.features[0].properties.name + '</b><p>' + e.features[0].properties.description + '</p><a href="/locations/' + e.features[0].properties.id + '">[More Info]</a></div>')
               .addTo(map);  
             });
     
+            // Center the map on the coordinates of any clicked symbol from the location layer.
+            map.on('click', 'location', function (e) {
+            map.flyTo({center: e.features[0].geometry.coordinates});
+            });
+
             // Change the cursor to a pointer when the mouse is over the location layer.
             map.on('mouseenter', 'location', function () {
                 map.getCanvas().style.cursor = 'pointer';

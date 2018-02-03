@@ -1,23 +1,9 @@
 <div class="wrapper">
 
 	<div class="map-small">
-	<!-- replace with static Mapbox URL using their API
 
-	Static map centered on: location.latitude, location.longitude
-	Starting zoom: ???? have to check
-	Size: 380px x 100px (maybe go taller...150px)
-	Style: mapbox light-v9
-	Access token: pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ
-	Add marker using watericon.png at location.latitude, location.longitude
-
-	https://api.mapbox.com/styles/v1/mapbox/light-v9/static/url-    .png(lon, lat)/long,lat,zoom/380x100{@2x}?access_token=""
-	url- percent encoded URL for the image, can be jpg or png
-
-
-	-->
+	<img src = "https://api.mapbox.com/v4/mapbox.light/pin-l-water+285A98(<%= @location.longitude %>,<%= @location.latitude %>)/<%= @location.longitude %>,<%= @location.latitude %>,15/380x150.png?access_token=pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ" >
 	
-	<%= image_tag 'map-test.png' %>
-
 	</div>
 
   <div class="form-signin">
@@ -78,9 +64,6 @@
 	</div>
 </div>
 
-	<!-- This should be deleted. Only going to edit via back end
-		<%= link_to 'Edit', edit_location_path(@location) %> |
-	-->
 
   </div>
 </div>
