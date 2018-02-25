@@ -1,8 +1,7 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy, :verify, :flag]
-  before_action :authenticate_admin_user!, only: [:new, :edit, :create, :destroy]
   #before_action :auth_user, only: [:upvote, :downvote]
-  #before_action :authenticate_admin_user!, except: [:index, :show, :upvote, :downvote]
+  before_action :authenticate_admin_user!, except: [:index, :show, :verify, :flag]
   
 
   # GET /locations
@@ -93,9 +92,9 @@ class LocationsController < ApplicationController
 
   #Location flagging
   def flag
-     @location.update_attribute(:flagged, 'True')
+    @location.update_attribute(:flagged, 'True')
     #send email saying that it is flagged
-    FlagLocationMailer.flag_location(current_user, @location).deliver
+    FlagLocationMailer.flag_location(current_user, @location).deliver_now
     flash[:notice] = "You have flagged this location."
     redirect_back(fallback_location: root_path)
   end

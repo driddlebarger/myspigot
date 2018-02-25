@@ -82,13 +82,12 @@
 	<% if @location.liked_by current_user %>
 	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, "/", method: :put, class: "btn btn-primary btn-block disabled", :disable => true %>
 	<% else %>
-	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, like_location_path(@location), method: :put, class: "btn btn-primary btn-block" %>
+	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, verify_location_path(@location), method: :put, class: "btn btn-primary btn-block" %>
 	<% end %>
 	</div>
 
 	<div class="col">
 
-		
 	<% if @location.flagged? %>
 		<%= link_to '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Flag'.html_safe, "/", class: "btn btn-danger btn-block disabled", :disabled => true %>
 
@@ -96,7 +95,8 @@
 
 		<%= link_to '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Flag'.html_safe, flag_location_path(@location), method: :put, class: "btn btn-danger btn-block", :data => {:confirm => 'Are you sure you want to flag this location?'} %> 
 	
-	<% end %>
+
+	<% end %> 
 
 	</div>
   </div>
