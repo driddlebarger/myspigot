@@ -2,23 +2,36 @@
 
 	<div class="map-small">
 
-	<img src = "https://api.mapbox.com/v4/mapbox.light/pin-l-water+285A98(<%= @location.longitude %>,<%= @location.latitude %>)/<%= @location.longitude %>,<%= @location.latitude %>,15/380x150.png?access_token=pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ" >
+	<img src = "https://api.mapbox.com/v4/mapbox.light/pin-m-water+285A98(<%= @location.longitude %>,<%= @location.latitude %>)/<%= @location.longitude %>,<%= @location.latitude %>,16.5/380x160.png?access_token=pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ" >
 	
 	</div>
 
-  <div class="form-signin">
+ <div class="form-signin">
 
 	<!-- what does this do???
 	<p id="notice"><%= notice %></p>
-	-->
 
+
+	
+	<p>
 	<small style="text-align:right" class="form-text text-muted">
 		<%= link_to 'Close', root_path %>
 	</small>
+	</p>
+		-->
 
-  		<h4>
-  		<%= @location.name %>
-  		</h4>
+	<div class="row">
+	  <div class="col-auto mr-auto">
+		<h4>
+  	  		<%= @location.name %>
+  	  	</h4>
+  	  </div>
+  	  <div class="col-auto">
+		<span class="badge badge-pill badge-primary"><i class="fa fa-chevron-up" aria-hidden="true"></i> 
+			<%= @location.get_likes.size %>
+		</span>
+	  </div>
+	</div>
 
 	<p>
  		<%= @location.description %>
@@ -50,20 +63,44 @@
 	</p>
 
 	<p>
-	<small class="form-text text-muted">
-		This location has been verified <strong>XXX</strong> times
-	</small>
+
+		<% if @location.flagged? %>
+			<span class="text-danger">
+				<b>This location has been flagged!</b>
+			</span>
+		<% elsif @location.get_upvotes.size.zero? %>
+			<span class="text-warning">
+			This location has not been verified yet.
+			</span>	
+		<% end %>
+
 	</p>
 
-<div class="row">
+  <div class="row">
 	<div class="col">
-	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, "/", class: "btn btn-primary btn-block" %>
+
+	<% if @location.liked_by current_user %>
+	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, "/", method: :put, class: "btn btn-primary btn-block disabled", :disable => true %>
+	<% else %>
+	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, like_location_path(@location), method: :put, class: "btn btn-primary btn-block" %>
+	<% end %>
 	</div>
+
 	<div class="col">
-	<%= link_to '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Flag'.html_safe, "/", class: "btn btn-danger btn-block" %> 
+
+		
+	<% if @location.flagged? %>
+		<%= link_to '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Flag'.html_safe, "/", class: "btn btn-danger btn-block disabled", :disabled => true %>
+
+		<% else %>
+
+		<%= link_to '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Flag'.html_safe, flag_location_path(@location), method: :put, class: "btn btn-danger btn-block", :data => {:confirm => 'Are you sure you want to flag this location?'} %> 
+	
+	<% end %>
+
 	</div>
-</div>
-
-
   </div>
+
+
+</div>
 </div>

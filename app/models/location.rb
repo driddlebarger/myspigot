@@ -1,5 +1,3 @@
 class Location < ApplicationRecord
-  include ActiveModel::SerializerSupport
-
-
+  acts_as_votable
 end
