@@ -6,32 +6,31 @@
 	
 	</div>
 
- <div class="form-signin">
+ <div class="location-data">
 
 	<!-- what does this do???
 	<p id="notice"><%= notice %></p>
+	-->
 
+	<% if @location.get_upvotes.size.nonzero? %>
+		<div class="location-upvote">
+		<h3>
+			<span style="text-align:center" class="badge badge-pill badge-primary"><i class="fa fa-chevron-up" aria-hidden="true"></i> 
+			<%= @location.get_likes.size %>
+			</span> 
+		</h3>
+		</div>
+	<% end %>
 
-	
 	<p>
-	<small style="text-align:right" class="form-text text-muted">
-		<%= link_to 'Close', root_path %>
+	<small style="text-align:right; margin-top: -10px;" class="form-text text-muted">
+		<%= link_to '[Close]', root_path %>
 	</small>
 	</p>
-		-->
 
-	<div class="row">
-	  <div class="col-auto mr-auto">
-		<h4>
-  	  		<%= @location.name %>
-  	  	</h4>
-  	  </div>
-  	  <div class="col-auto">
-		<span class="badge badge-pill badge-primary"><i class="fa fa-chevron-up" aria-hidden="true"></i> 
-			<%= @location.get_likes.size %>
-		</span>
-	  </div>
-	</div>
+	<h4>
+  	  	<%= @location.name %>
+  	</h4>
 
 	<p>
  		<%= @location.description %>
@@ -76,10 +75,12 @@
 
 	</p>
 
-  <div class="row">
+
+  <% if user_signed_in? %>
+  	<div class="row">
 	<div class="col">
 
-	<% if @location.liked_by current_user %>
+	<% if current_user.voted_for? @location %>
 	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, "/", method: :put, class: "btn btn-primary btn-block disabled", :disable => true %>
 	<% else %>
 	<%= link_to '<i class="fa fa-check-circle" aria-hidden="true"></i> Verify'.html_safe, verify_location_path(@location), method: :put, class: "btn btn-primary btn-block" %>
@@ -95,12 +96,15 @@
 
 		<%= link_to '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Flag'.html_safe, flag_location_path(@location), method: :put, class: "btn btn-danger btn-block", :data => {:confirm => 'Are you sure you want to flag this location?'} %> 
 	
-
 	<% end %> 
 
 	</div>
-  </div>
-
+  	</div>
+  <% else %>
+  	<small class="form-text text-muted">
+  		<%= link_to "Sign in", new_user_registration_path %> to validate or flag locations.
+  	</small>
+  <% end %>
 
 </div>
 </div>

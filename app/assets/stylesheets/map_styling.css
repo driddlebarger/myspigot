@@ -45,6 +45,19 @@ body {
   margin-bottom: 15px;
 }
 
+.location-data {
+  max-width: 380px;
+  padding: 15px 20px 15px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1); 
+ }
+
+.location-upvote {
+  text-align: center;
+  margin-top: -30px;
+ }
+
 .form-signin {
   max-width: 380px;
   padding: 15px 35px 15px;
@@ -87,7 +100,6 @@ body {
   input:focus{
     outline: none;
   }
-
 
 
 }
