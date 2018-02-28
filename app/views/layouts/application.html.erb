@@ -39,6 +39,11 @@
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
 mixpanel.init("15053396e356fe89af9c2b17b2633a3a");</script><!-- end Mixpanel -->
 
+<script type="text/javascript">
+  mixpanel.track(
+    "app visit"
+  );
+</script>
 
   </head>
 
@@ -71,7 +76,7 @@ mixpanel.init("15053396e356fe89af9c2b17b2633a3a");</script><!-- end Mixpanel -->
     <span class="navbar-brand mb-0 h1"><%=link_to "WaterSpotter", root_path, class: "text-white" %></span>
     
     <% if user_signed_in? %>
-      <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %>
+      <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %> 
      <% else %>
       <%= link_to "Add Location", new_user_registration_path, class: "btn navbar-toggler" %>
     <% end %>
