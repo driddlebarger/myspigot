@@ -39,32 +39,49 @@
 for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
 mixpanel.init("15053396e356fe89af9c2b17b2633a3a");</script><!-- end Mixpanel -->
 
-<script type="text/javascript">
-  mixpanel.track(
-    "app visit"
-  );
-</script>
-
   </head>
 
   <body>
 
   <div class="pos-f-t">
   <div class="collapse" id="navbarToggleExternalContent">
-    <div class="bg-dark p-4">
-        
+  
+  <nav class="navbar navbar-dark bg-dark">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
 
-        <div class="row">
-            <h4 class="text-white">WaterSpotter Beta (Los Angeles)</h4>
-            <span class="text-muted">Our goal is to collaborate to build a list of all the free water fountains in our area, so we can ride our bikes, run, hike, and explore new places without worrying about running out of water.</span>
-            <small><span class="text-muted"><%= link_to "Terms & Conditions", "/terms", class: "text-white" %></span>   |   </small>
-            <small><span class="text-muted"><%= link_to "Privacy Policy", "/privacy", class: "text-white" %></span></small><br>
-        </div>
-      <% if user_signed_in? %>
-        <div class="row">
-              <span class="text-muted"><%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: "text-white") %></span>  
-        </div>
-      <% end %>
+        <% if user_signed_in? %>
+          <span class="text-muted"><%= link_to('Sign Out', destroy_user_session_path, method: :delete, class: "btn navbar-toggler") %></span>
+        <% else %>
+          <span class="text-muted"><%= link_to('Sign Up', new_user_registration_path, class: "btn navbar-toggler") %></span>
+        <% end %>
+
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto justify-content-end">
+      <li class="nav-item">
+        <small><%= link_to "Terms & Conditions", "/terms", class: "text-muted" %>  |  
+        <%= link_to "Privacy Policy", "/privacy", class: "text-muted" %></small></a>
+      </li>
+    </ul>
+
+  </nav>
+
+    <div class="bg-dark p-4">
+        <table>
+            <tr>
+              <td colspan="3">
+                <h3 class="text-white">WaterSpotter Beta<br>(Los Angeles)</h3>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <span class="text-muted">Our goal is to collaborate to build a list of all the free water fountains in our area, so we can ride our bikes, run, hike, and explore new places, without worrying about running out of water.</span>
+              </td>
+            </tr>
+        </table>
+      </div>
 
     </div>
   </div>
@@ -73,7 +90,8 @@ mixpanel.init("15053396e356fe89af9c2b17b2633a3a");</script><!-- end Mixpanel -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <span class="navbar-brand mb-0 h1"><%=link_to "WaterSpotter", root_path, class: "text-white" %></span>
+
+    <span class="navbar-brand mx-auto"><%=link_to "WaterSpotter", root_path, class: "text-white" %></span>
     
     <% if user_signed_in? %>
       <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %> 
