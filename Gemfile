@@ -27,6 +27,7 @@ gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'acts_as_votable', '~> 0.11.1'
+gem 'mixpanel-ruby'
 
 
 group :development, :test do
