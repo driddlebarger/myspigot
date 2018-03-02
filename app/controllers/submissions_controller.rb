@@ -6,9 +6,13 @@ before_action :authenticate_user!
   end
 
   def create
+
     @submission = Submission.new(params[:submission])
     @submission.request = request
     if @submission.deliver
+        $tracker.track(@location, 'Add Location (Submitted)', {
+        'User' => current_user.email,
+        })
     	flash.now[:error] = nil
     	redirect_to root_path, notice: "Thanks for your submission!"
       current_user.increment!(:count, 1)
