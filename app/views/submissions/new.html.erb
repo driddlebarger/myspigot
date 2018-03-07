@@ -8,6 +8,46 @@
   var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
 </script>
 
+
+<div id='map' class='map-small'>
+    <script>
+//  Mapbox GL code 
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
+      
+      var startPos;
+        navigator.geolocation.watchPosition(function(position) {
+          startPos = position;
+          var startLat = startPos.coords.latitude;
+          console.log(startLat);
+          document.getElementById("latitude").value = startLat;
+          var startLong = startPos.coords.longitude;
+          console.log(startLong);
+          document.getElementById("longitude").value = startLong;
+          //startCoords = [startLong, startLat];
+          //map.setCenter(startCoords);
+        });
+
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v9',
+        center: startPos,
+        zoom: 10.0 // starting zoom
+      });
+
+      const geolocate = new mapboxgl.GeolocateControl({
+                positionOptions: {
+                enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+      map.addControl(geolocate)
+      setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5)
+
+
+    </script>
+
+</div>
+
 <div class="form-signin">
 
 <h3>Add a New Location</h3>
@@ -25,15 +65,13 @@
 
     <hr>
       
-      <p><button class="btn btn-dark btn-block" data-toggle="button" aria-pressed="false" autocomplete="off" id="loc"><i class="fa fa-map-marker" aria-hidden="true"></i>    Use Current Location</button>
-          <small class="form-text text-muted">This will automatically fill in the fields below</small>
-      </p>
 
-      <div class="form-control">
+
+      <div class="hidden">
       <%= f.text_field :latitude, placeholder: "Latitude", id: "latitude" %>
       </div>
 
-      <div class="form-control">
+      <div class="hidden">
       <%= f.text_field :longitude, placeholder: "Longitude", id: "longitude" %> 
       </div>
 
@@ -54,25 +92,7 @@
     <% end %>
     </div>
 
-      <script>
-      document.getElementById('loc').addEventListener(touchEvent, getLocation);
 
-      function getLocation() {
-          if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(showPosition);
-          } else {
-              console.log('Geolocation not active');
-          }
-      }
-      function showPosition(position) {
-          var lat = position.coords.latitude;
-          document.getElementById("latitude").value = lat;
-
-          var lon = position.coords.longitude;
-          document.getElementById("longitude").value = lon;
-
-      }
-      </script>
 
 </div>
 </div>
