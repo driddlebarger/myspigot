@@ -13,7 +13,10 @@
     <script>
 //  Mapbox GL code 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
-      
+     
+    // needs logic where if you decline geolocation it just hovers at a certain location
+    // need default map center???
+
       var startPos;
         navigator.geolocation.watchPosition(function(position) {
           startPos = position;
@@ -30,7 +33,7 @@
       var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v9',
-        center: startPos,
+        center: [-118.402, 33.911],
         zoom: 10.0 // starting zoom
       });
 
@@ -43,6 +46,9 @@
       map.addControl(geolocate)
       setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5)
 
+      map.addControl(new mapboxgl.NavigationControl());
+      map.dragRotate.disable();
+      map.touchZoomRotate.disableRotation();
 
     </script>
 
@@ -50,8 +56,46 @@
 
 <div class="form-signin">
 
-<h3>Add a New Location</h3>
-<p>Add a new water spot to our database!</p>
+
+<h3 style="text-align:center;">Add new WaterSpot</h3>
+
+<table>
+  <tr>
+    <td class="col-lg" style="padding:0px;">
+      <span id="current">Use Current Location</span>
+      <span id="manual" class="hidden">Manual Entry</span>
+    </td>
+    <td class="col-" style="vertical-align: center;">
+
+      <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+        <label class="onoffswitch-label" for="myonoffswitch"></label>
+    </div>
+
+  </td>
+</tr>
+</table>
+
+<script>
+// if "myonoffswitch" is unchecked (off position), then reveal lat/long fields, STOP geolocation
+
+$('#myonoffswitch').change(function(manual){
+  if ($(this).prop('checked') == false){
+    $('#map').slideToggle()
+    $('#current').toggle()
+    $('#manual').toggle()
+    $('#lat-long').toggle()
+    $('#latitude').val("")
+    $('#longitude').val("") 
+    map.remove(geolocate)   // STOP geolocation
+  }
+  // reload the page if "myonoffswitch" is checked back to true
+  if ($(this).prop('checked') == true){
+    location.reload();
+  }
+});
+
+</script>
 
   <%= form_for @submission do |f| %>
 
@@ -64,16 +108,16 @@
       </div>
 
     <hr>
-      
 
-
-      <div class="hidden">
+    <div id="lat-long" class="hidden">
+      <div class="form-control">
       <%= f.text_field :latitude, placeholder: "Latitude", id: "latitude" %>
       </div>
 
-      <div class="hidden">
+      <div class="form-control">
       <%= f.text_field :longitude, placeholder: "Longitude", id: "longitude" %> 
       </div>
+    </div>
 
       <div class="hidden">
       <%= f.label :nickname %><br>
@@ -88,7 +132,7 @@
 
 
     <div class="form-group">
-    <%= f.submit 'Submit Location!', class: "btn btn-lg btn-primary btn-block" %>
+    <%= f.submit 'Add to Map!', class: "btn btn-lg btn-primary btn-block" %>
     <% end %>
     </div>
 
