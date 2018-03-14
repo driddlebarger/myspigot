@@ -11,29 +11,12 @@
 
 <div id='map' class='map-small'>
     <script>
-//  Mapbox GL code 
     mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
-     
-    // needs logic where if you decline geolocation it just hovers at a certain location
-    // need default map center???
-
-      var startPos;
-        navigator.geolocation.watchPosition(function(position) {
-          startPos = position;
-          var startLat = startPos.coords.latitude;
-          console.log(startLat);
-          document.getElementById("latitude").value = startLat;
-          var startLong = startPos.coords.longitude;
-          console.log(startLong);
-          document.getElementById("longitude").value = startLong;
-          //startCoords = [startLong, startLat];
-          //map.setCenter(startCoords);
-        });
 
       var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v9',
-        center: [-118.402, 33.911],
+        center: [-118.402, 33.911], // same coordinates as homepage
         zoom: 10.0 // starting zoom
       });
 
@@ -44,11 +27,21 @@
                 trackUserLocation: true
             })
       map.addControl(geolocate)
-      setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5)
+      setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5)  // automatically click GeoLocate
 
-      map.addControl(new mapboxgl.NavigationControl());
-      map.dragRotate.disable();
-      map.touchZoomRotate.disableRotation();
+      map.addControl(new mapboxgl.NavigationControl({
+                options: {showCompass: false}
+      }));
+
+      // locate the user, place value in (hidden) form fields
+      var startPos;
+        navigator.geolocation.watchPosition(function(position) {
+          startPos = position;
+          var startLat = startPos.coords.latitude;
+            document.getElementById("latitude").value = startLat;
+          var startLong = startPos.coords.longitude;
+            document.getElementById("longitude").value = startLong;
+        });
 
     </script>
 
@@ -57,7 +50,7 @@
 <div class="form-signin">
 
 
-<h3 style="text-align:center;">Add new WaterSpot</h3>
+<h3 style="text-align:center;">Add a new WaterSpot</h3>
 
 <table>
   <tr>
@@ -85,6 +78,8 @@ $('#myonoffswitch').change(function(manual){
     $('#current').toggle()
     $('#manual').toggle()
     $('#lat-long').toggle()
+    $('#startLat').val("")
+    $('#startLong').val("")
     $('#latitude').val("")
     $('#longitude').val("") 
     map.remove(geolocate)   // STOP geolocation
