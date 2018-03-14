@@ -13,7 +13,7 @@
       var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/light-v9',
-        zoom: 14 // starting zoom
+        zoom: 15 // starting zoom
       });
 
       map.setCenter([location_long, location_lat]);
@@ -26,6 +26,10 @@
   		new mapboxgl.Marker(el)
   		.setLngLat([location_long, location_lat])
   		.addTo(map);
+
+      map.addControl(new mapboxgl.NavigationControl({
+    	options: {showCompass: false}
+      }));
 
     </script>
 
