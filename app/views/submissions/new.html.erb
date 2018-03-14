@@ -35,7 +35,7 @@
 
       // locate the user, place value in (hidden) form fields
       var startPos;
-        navigator.geolocation.watchPosition(function(position) {
+      navigator.geolocation.watchPosition(function(position) {
           startPos = position;
           var startLat = startPos.coords.latitude;
             document.getElementById("latitude").value = startLat;
@@ -49,48 +49,50 @@
 
 <div class="form-signin">
 
-
+<!--
 <h3 style="text-align:center;">Add a new WaterSpot</h3>
+-->
 
-<table>
-  <tr>
-    <td class="col-lg" style="padding:0px;">
-      <span id="current">Use Current Location</span>
-      <span id="manual" class="hidden">Manual Entry</span>
-    </td>
-    <td class="col-" style="vertical-align: center;">
+  <div class="form-group">
+    <table>
+      <tr>
+        <td class="col-lg" style="padding:0px;">
+          <span id="current">Use Current Location</span>
+          <span id="manual" class="hidden">Manual Entry</span>
+        </td>
+        <td class="col-" style="vertical-align: center;">
 
-      <div class="onoffswitch">
-        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-        <label class="onoffswitch-label" for="myonoffswitch"></label>
-    </div>
+          <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch"></label>
+        </div>
 
-  </td>
-</tr>
-</table>
+      </td>
+    </tr>
+    </table>
 
-<script>
-// if "myonoffswitch" is unchecked (off position), then reveal lat/long fields, STOP geolocation
+    <script>
+    // if "myonoffswitch" is unchecked (off position), then reveal lat/long fields, STOP geolocation
 
-$('#myonoffswitch').change(function(manual){
-  if ($(this).prop('checked') == false){
-    $('#map').slideToggle()
-    $('#current').toggle()
-    $('#manual').toggle()
-    $('#lat-long').toggle()
-    $('#startLat').val("")
-    $('#startLong').val("")
-    $('#latitude').val("")
-    $('#longitude').val("") 
-    map.remove(geolocate)   // STOP geolocation
-  }
-  // reload the page if "myonoffswitch" is checked back to true
-  if ($(this).prop('checked') == true){
-    location.reload();
-  }
-});
+    $('#myonoffswitch').change(function(manual){
+      if ($(this).prop('checked') == false){
+        $('#map').slideToggle()
+        $('#current').toggle()
+        $('#manual').toggle()
+        $('#lat-long').toggle()
+        $('#startPos').val("")
+        $('#latitude').val("")
+        $('#longitude').val("") 
+        map.remove(geolocate)   // STOP geolocation
+      }
+      // reload the page if "myonoffswitch" is checked back to true
+      if ($(this).prop('checked') == true){
+        location.reload();
+      }
+    });
 
-</script>
+    </script>
+  </div>
 
   <%= form_for @submission do |f| %>
 
@@ -127,7 +129,7 @@ $('#myonoffswitch').change(function(manual){
 
 
     <div class="form-group">
-    <%= f.submit 'Add to Map!', class: "btn btn-lg btn-primary btn-block" %>
+    <%= f.submit 'Add WaterSpot to Map!', class: "btn btn-lg btn-primary btn-block" %>
     <% end %>
     </div>
 
