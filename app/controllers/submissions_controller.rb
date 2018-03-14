@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-before_action :authenticate_user!
+before_action :auth_user
 
   def new
     @submission = Submission.new

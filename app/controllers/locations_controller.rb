@@ -1,6 +1,5 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy, :verify, :flag]
-  #before_action :auth_user, only: [:upvote, :downvote]
   before_action :authenticate_admin_user!, except: [:index, :show, :verify, :flag]
   
 

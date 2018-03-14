@@ -94,11 +94,16 @@ mixpanel.init("15053396e356fe89af9c2b17b2633a3a");</script><!-- end Mixpanel -->
 
     <span class="navbar-brand mx-auto"><%=link_to "WaterSpotter", root_path, class: "text-white" %></span>
     
+    <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %> 
+
+<!-- 
     <% if user_signed_in? %>
       <%= link_to "Add Location", "/submit", class: "btn navbar-toggler" %> 
      <% else %>
       <%= link_to "Add Location", new_user_registration_path, class: "btn navbar-toggler" %>
     <% end %>
+
+-->
 
   </nav>
   </span>

@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, request.fullpath)
   end
 
+  # specific to add location -- redirect to sign up path
+  def auth_user
+    redirect_to new_user_registration_url unless user_signed_in?
+  end
+
 
   protected
 
