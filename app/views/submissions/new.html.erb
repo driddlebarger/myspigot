@@ -38,10 +38,23 @@
       navigator.geolocation.watchPosition(function(position) {
           startPos = position;
           var startLat = startPos.coords.latitude;
-            document.getElementById("latitude").value = startLat;
           var startLong = startPos.coords.longitude;
-            document.getElementById("longitude").value = startLong;
-        });
+
+          document.getElementById("latitude").value = startLat;
+          console.log(latitude);
+          document.getElementById("longitude").value = startLong;
+          console.log(longitude);
+
+          if (document.getElementById("myonoffswitch").value == false) {
+            navigator.geolocation.clearWatch(position);
+            console.log("turn of geolocation")
+          };
+
+      });
+
+
+          navigator.geolocation.clearWatch(startPos);
+
 
     </script>
 
@@ -76,14 +89,17 @@
 
     $('#myonoffswitch').change(function(manual){
       if ($(this).prop('checked') == false){
-        $('#map').slideToggle()
-        $('#current').toggle()
-        $('#manual').toggle()
-        $('#lat-long').toggle()
-        $('#startPos').val("")
-        $('#latitude').val("")
-        $('#longitude').val("") 
-        map.remove(geolocate)   // STOP geolocation
+        navigator.geolocation.clearWatch(startPos)
+        $('#map').slideToggle()   // hide map
+        $('#current').toggle()    // hide "Current Location" text
+        $('#manual').toggle()     // reveal "Manual Entry" text
+        $('#lat-long').toggle()   // reveal Latitude and Longitude inputs
+        $('#startPos').val("")    // clear startpos
+        $('#latitude').val("").delay( 5000 )
+        $('#longitude').val("").delay( 5000 )
+        map.remove(geolocate)
+
+           // STOP geolocation
       }
       // reload the page if "myonoffswitch" is checked back to true
       if ($(this).prop('checked') == true){
