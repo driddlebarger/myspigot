@@ -6,15 +6,17 @@ before_action :auth_user
   end
 
   def create
-
     @submission = Submission.new(params[:submission])
     @submission.request = request
     if @submission.deliver
-        $tracker.track(@location, 'Add Location (Submitted)', {
-        'User' => current_user.email,
-        })
+          #Mixpanel tracking
+          mixpanel.track("Add Location (Submitted)", "User"          => current_user.email,
+                                                     "User ID"       => current_user.id)
     	flash.now[:error] = nil
-    	redirect_to root_path, notice: "Thanks for your submission!"
+      #Send email to current_user IF it submits okay
+      SubmissionMailer.submission(current_user, @submission).deliver_now
+    	redirect_to home_path, notice: "Thanks for your submission!"
+      #Count how many submissions each user makes
       current_user.increment!(:count, 1)
     else
     	flash.now[:error] = 'Submission could not be completed.'

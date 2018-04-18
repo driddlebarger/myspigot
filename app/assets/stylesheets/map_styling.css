@@ -55,8 +55,9 @@ body {
  }
 
 .location-upvote {
-  text-align: center;
-  margin-top: -15px;
+  text-align: left;
+  margin-top: -10px;
+  margin-bottom: 15px;
  }
 
 .form-signin {
@@ -71,19 +72,19 @@ body {
     margin-bottom: 30px;
   }
 
-  .checkbox {
-    font-weight: normal;
-  }
+.checkbox {
+  font-weight: normal;
+}
 
-  .form-control {
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    padding-bottom: 10px;
-    box-shadow: none;
-    margin-bottom: 10px;
-  }
+.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  padding-bottom: 10px;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
 
 .form-control:focus {
   border-color: inherit;
@@ -95,9 +96,15 @@ body {
     border: none; 
     border-width: 0; 
     box-shadow: none;
-
   }
   
+  input[type="email"]{
+    width: 100%; 
+  }
+  input[type="password"]{
+    width: 100%; 
+  }
+
   input:focus{
     outline: none;
   }
@@ -134,9 +141,4 @@ body {
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
     right: 0px; 
 }
-
-
-
 }
-
-

@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get 'pages/home'
+  get 'pages/index'
+  root 'pages#index'
+  get 'home' => "pages#home"
 
-  root 'pages#home'
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: "registrations" }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: "registrations", confirmations: "confirmations", sessions: "sessions" }
 
   devise_scope :user do
   	get '/login', to: 'devise/sessions#new'
   	delete '/logout', to: 'devise/sessions#destroy', as: :signout
+    patch '/user/confirmation' => 'confirmations#update', :via => :patch, :as => :update_user_confirmation
+    #patch "/confirm" => "confirmations#confirm"
   end
 
   resources :locations do
@@ -26,8 +29,6 @@ Rails.application.routes.draw do
 
   get 'terms' => "pages#terms"
   get 'privacy' => "pages#privacy"
-
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

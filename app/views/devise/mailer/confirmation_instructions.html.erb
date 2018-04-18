@@ -1,5 +1,125 @@
-<p>Welcome <%= @email %>!</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <!-- Facebook sharing information tags -->
+        <meta property="og:title" content="Waterspotter: Complete Registration" />
+        
+        <title>Welcome to WaterSpotter! Complete Registration</title>
 
-<p>You can confirm your account email through the link below:</p>
+        <%= stylesheet_link_tag 'email', media: 'all' %>
+    </head>
+    
+    <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+    	<center>
+        	<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+            	<tr>
+                	<td align="center" valign="top" style="padding-top:20px;">
+                    	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer">
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Header \\ -->
+                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">
+                                        <tr>
+                                            <td class="headerContent" align="center">
+                                            
+                                            	<!-- // Begin Module: Standard Header Image \\ -->
+                                            	<img src="https://media.giphy.com/media/OF0yOAufcWLfi/giphy.gif" style="max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                                            	<!-- // End Module: Standard Header Image \\ -->
+                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Header \\ -->
+                                </td>
+                            </tr>
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Body \\ -->
+                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
+                                    	<tr>
+                                            <td valign="top">
+                                
+                                                <!-- // Begin Module: Standard Content \\ -->
+                                                <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td valign="top" class="bodyContent">
+                                                            <div mc:edit="std_content00">
+                                                                <h3 class="h3">Complete Registration</h3>
+                                                                <strong>Welcome to WaterSpotter!</strong> You are all set to start using the app, however if you want to gain full access, please complete your registration by creating a password (click below).
+                                                                <br />
+                                                                <br />
+                                                                <!--
+                                                                Where <a href="http://www.mailchimp.com/" target="_blank">MailChimp</a> can be used to send newsletters to several subscribers in one large blast, <a href="http://www.mandrill.com/" target="_blank">Mandrill</a> is specifically positioned to send transactional emails, and offers relevant tracking and metrics that isn't necessarily available through a traditional email platform.
+                                                            	-->
+                                                            </div>
+														</td>
+                                                    </tr>
+                                                    <tr>
+                                                    	<td align="center" valign="top" style="padding-top:0;">
+                                                        	<table border="0" cellpadding="15" cellspacing="0" class="templateButton">
+                                                            	<tr>
+                                                                	<td valign="middle" class="templateButtonContent">
+                                                                    	<div mc:edit="std_content01">
+                                                                        	<%= link_to 'Create a Password', confirmation_url(@resource, confirmation_token: @token) %>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!-- // End Module: Standard Content \\ -->
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Body \\ -->
+                                </td>
+                            </tr>
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Footer \\ -->
+                                	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter">
+                                    	<tr>
+                                        	<td valign="top" class="footerContent">
+                                            
+                                                <!-- // Begin Module: Transactional Footer \\ -->
+                                                <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td valign="top">
+                                                            <div mc:edit="std_footer">
+																This is an automatically generated email. You are receiving it because you signed up at WaterSpotterApp.com
+																<br />
+																<em>Copyright &copy; 2018 WaterSpotter, All rights reserved.</em>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <!--
+                                                    <tr>
+                                                        <td valign="middle" id="utility">
+                                                            <div mc:edit="std_utility">
+                                                                &nbsp;<a href="*|ARCHIVE|*" target="_blank">view this in your browser</a> | <a href="*|UNSUB|*">unsubscribe from this list</a> | <a href="*|UPDATE_PROFILE|*">update subscription preferences</a>&nbsp;
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                	-->
+                                                </table>
+                                                <!-- // End Module: Transactional Footer \\ -->
+                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Footer \\ -->
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </body>
+</html>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

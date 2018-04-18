@@ -27,12 +27,16 @@ gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'acts_as_votable', '~> 0.11.1'
-gem 'mixpanel-ruby'
+gem 'gibbon'
+gem 'mengpaneel'
+gem 'premailer-rails'
+gem 'figaro'
 
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'sqlite3'
+  gem 'thin'
 end
 
 group :development do

@@ -40,10 +40,8 @@ class LocationsController < ApplicationController
 
   # GET /locations/1
   def show
-    $tracker.track(@location, 'View Location', {
-    'Name' => @location.name,
-    'ID' => @location.id
-    })
+    mixpanel.track("View Location", "Location ID"          => @location.id,
+                                    "Location Name"        => @location.name)
   end
 
   # GET /locations/new
@@ -89,10 +87,10 @@ class LocationsController < ApplicationController
 
   def verify
     @location.liked_by current_user
-    $tracker.track(@location, 'Verify Location', {
-    'User' => current_user.email,
-    'Name' => @location.name
-    })
+    mixpanel.track("Verify Location", "Location ID"          => @location.id,
+                                      "Location Name"        => @location.name,
+                                      "User ID"              => current_user.id,
+                                      "User Email"           => current_user.email)
     flash[:notice] = "Thanks for verifying!"
     redirect_back(fallback_location: root_path)
   end

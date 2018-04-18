@@ -9,7 +9,7 @@
   	<div id='map' class='map'></div>
     <script>
 //  Mapbox GL code 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZHJpZGRsZWJhcmdlciIsImEiOiJjajh3aWhkbDMxczRiMzJvNGQ0azU3NjN5In0.o2fPEeGh3pH2-AeAAR0seQ';
+    mapboxgl.accessToken = '<%= Figaro.env.mapbox_token %>';
     
       var map = new mapboxgl.Map({
       container: 'map',
@@ -47,10 +47,10 @@
 
             new mapboxgl.Popup()
               .setLngLat(e.features[0].geometry.coordinates)
-              .setHTML('<div><b>' + e.features[0].properties.name + '</b><p>' + e.features[0].properties.description + '</p><a href="/locations/' + e.features[0].properties.id + '">[More Info]</a></div>')
+              .setHTML('<div><b>' + e.features[0].properties.name + '</b><p>' + e.features[0].properties.description + '</p><a href="/locations/' + e.features[0].properties.id + '" class="btn btn-outline-primary btn-sm btn-block"><i class="fa fa-info-circle" aria-hidden="true"></i> More Info</a></div>')
               .addTo(map);  
             });
-    
+
             // Center the map on the coordinates of any clicked symbol from the location layer.
             map.on('click', 'location', function (e) {
             map.flyTo({center: e.features[0].geometry.coordinates});

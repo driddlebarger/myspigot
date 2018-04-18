@@ -1,0 +1,239 @@
+<script type="text/javascript">
+    mixpanel.track("View Landing Page");
+</script>
+
+    <!-- Header -->
+    <header id="home">
+        <nav class="navbar navbar-default" id="main-nav">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+					    <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-morki">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">WaterSpotter</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-morki">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#about" data-scroll>About</a></li>
+                                <li><a href="#features" data-scroll>Features</a></li>
+                                <!--<li><a href="#faqs" data-scroll>FAQ</a></li>-->
+                                <li class="nav-download-btn"><%= link_to "Sign In", home_path %></li>
+                                <!-- Next steps: change root_path to pages_home_path, then set before_action authenticate_user! in pages controller -->
+                                <!-- if already signed in, it will take them to main map. If not, it will force them to sign in -->
+
+                            </ul>
+                        </div><!-- .navbar-collapse -->
+					</div>
+				</div>
+			</div>
+		</nav>
+    </header><!-- Ends: header -->
+    
+    <!-- Intro Section -->
+    <section class="intro">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-1 col-sm-8 intro-info wow fadeIn">
+                    <div class="intro-info-content">
+                        <h1><b>Find FREE Water Fountains</b></h1>
+                        <p>Waterspotter is a crowdsourced map of free water fountains for running, cycling, and hiking.</p>
+
+                        <div class="col-sm-10 get-notified">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+
+                                <!-- DEVISE Form For -->
+                                <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+                                    <%= devise_error_messages! %>
+                                    
+                                    <%= f.email_field :email, placeholder: "Your Email Address", :required => true %>
+                                    <%= f.submit "Get Free Access", class: 'sign-up-button' %>
+                                <% end %>
+                                <!-- END Devise Form -->
+                                </div>
+                            </div>
+                            <!-- /// FACEBOOK SIGN-UP /// -->
+                            <p>-OR-</p> <br>
+                            <!--
+                            <button type="submit" class="btn btn-block btn-social btn-facebook" style="text-align: center">
+                            <i class="fa fa-facebook-official" aria-hidden="true"></i>Sign Up with Facebook</button>
+                            -->
+
+                            <%= link_to '<i class="fa fa-facebook-official" aria-hidden="true"></i>Continue with Facebook'.html_safe, user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook", style: "text-align: center" %>
+                
+
+                        </div><!-- Ends: .col-sm-12 -->
+                    </div>
+                </div><!-- Ends: .intro-info -->
+                
+                <div class="col-md-3 col-md-offset-1 col-sm-4 intro-image wow fadeIn">
+                    <div class="intro-image-content">
+                        <%= image_tag("app_mockup_WS.png", class: "img-responsive") %>
+                    </div>
+                </div><!-- Ends: .intro-image -->
+            </div>
+        </div>
+    </section><!-- Ends: .intro -->
+    
+    <!-- About -->
+    <section class="services" id="about">
+        <div class="container">
+            <div class="row">
+                
+               <div class="col-sm-12 section-header">
+                   <h2>Find Free Water</h2>
+               </div>
+           
+                <div class="col-sm-4">
+                    <div class="service-box text-center">
+                        <%= image_tag("find_water.png")%>
+                        <h3>Find Water Fountains</h3>
+                        <p>No more worrying about finding water! Use the app to find water fountains (WaterSpots) for your next bike ride, run, or hike. </p>
+                    </div>
+                </div><!-- Ends: .col-sm-3 -->
+                <div class="col-sm-4">
+                    <div class="service-box text-center">
+                        <%= image_tag("post_updates.png")%>
+                        <h3>Easily Add to the Map</h3>
+                        <p>If you find a new WaterSpot not listed, just add it to the map. WaterSpotter uses GPS to automatically add your current location.</p>
+                    </div>
+                </div><!-- Ends: .col-sm-3 -->
+                <div class="col-sm-4">
+                    <div class="service-box text-center">
+                        <%= image_tag("crowdsourced_data.png")%>
+                        <h3>Crowdsourced</h3>
+                        <p>Our map is 100% crowdsourced, so it's more accurate, up-to-date, and constantly being improved over time. Users can also verify and flag locations.<br></p>
+                    </div>
+            </div>
+        </div>
+    </section><!-- Ends: .services -->
+    
+    
+    <!-- App Features -->
+    <section class="app-features" id="features">
+        <div class="container">
+            <div class="row">
+               <div class="col-sm-12 section-header">
+                   <h2>App Features</h2>
+               </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="features-left wow fadeInLeft">
+                        <div class="feature-single">
+                            <div class="feature-info">
+                                <h3>Accurate Locations</h3>
+                                <p>WaterSpotter uses precise GeoLocation from your smartphone to create Spots as accurately as possible.</p>
+                            </div>
+                            <div class="feature-icon">
+                                <span><i class="fa fa-compass"></i></span>
+                                <!-- icon: Compass for geolocation -->
+                            </div>
+                        </div><!-- Ends: .feature-single -->
+                        <div class="feature-single">
+                            <div class="feature-info">
+                                <h3>Location "Score"</h3>
+                                <p>Each Spot has a score; the higher the number, the more reliable it is.</p>
+                            </div>
+                            <div class="feature-icon">
+                                <span><i class="fa fa-chevron-circle-up"></i></span>
+                                <!-- icon: Chevron for score -->
+                            </div>
+                        </div><!-- Ends: .feature-single -->
+                        <div class="feature-single">
+                            <div class="feature-info">
+                                <h3>Verify Location</h3>
+                                <p>If you know the spot is accurate and working, verify it to increase the score.</p>
+                            </div>
+                            <div class="feature-icon">
+                                <span><i class="fa fa-check-circle"></i></span>
+                                <!-- icon: Checkmark for geolocation -->
+                            </div>
+                        </div><!-- Ends: .feature-single -->
+                    </div>
+                </div><!-- Ends: .col-sm-4 -->
+                <div class="col-md-4 col-sm-12">
+                    <div class="feature-image wow fadeInUp">
+                        <%= image_tag("app_mockup_WS_features.png", class: "img-responsive") %>
+                    </div>
+                </div><!-- Ends: .col-sm-4 -->
+                <div class="col-md-4 col-sm-12">
+                    <div class="features-right wow fadeInRight">
+                        <div class="feature-single">
+                            <div class="feature-icon">
+                                <span><i class="fa fa-plus-circle"></i></span>
+                                <!-- icon: + for add location -->
+                            </div>
+                            <div class="feature-info">
+                                <h3>Add New Locations</h3>
+                                <p>Easily add new locations to the map using either your smartphone or web browser.</p>
+                            </div>
+                        </div><!-- Ends: .feature-single -->
+                        <div class="feature-single">
+                            <div class="feature-icon">
+                                <span><i class="fa fa-map"></i></span>
+                                <!-- icon: ???? -->                                
+                            </div>
+                            <div class="feature-info">
+                                <h3>High Quality Map</h3>
+                                <p>WaterSpotter is built on top of <a href="http://www.mapbox.com" target="_blank">MapBox's</a> high quality web map platform.</p>
+                            </div>
+                        </div><!-- Ends: .feature-single -->
+                        <div class="feature-single">
+                            <div class="feature-icon">
+                                <span><i class="fa fa-exclamation-triangle"></i></span>
+                                <!-- icon: info flag for add location -->
+                            </div>
+                            <div class="feature-info">
+                                <h3>Flag Location</h3>
+                                <p>See a spot that's no longer working or not accurately placed? Flag it and we'll fix it!</p>
+                            </div>
+                        </div><!-- Ends: .feature-single -->
+                    </div>
+                </div><!-- Ends: .col-sm-4 -->
+            </div>
+        </div>
+    </section><!-- Ends: .app-features -->
+    
+    
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 wow fadeInUp" data-wow-delay="0.1s">
+                    <h3>Subscribe To Our Newsletter To Get Latest Updates &amp; News</h3>
+                    <form action="https://waterspotterapp.us12.list-manage.com/subscribe/post?u=cf93b5e240f6e72a92cf01721&amp;id=a604ecccdd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Your Email" required>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_cf93b5e240f6e72a92cf01721_a604ecccdd" tabindex="-1" value=""></div>
+                        <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe">Subscribe</button>
+                    </form>             
+                </div><!-- Ends: .col-sm-12 -->
+            </div>
+        </div>
+    </section><!-- Ends: .newsletter -->
+  
+    
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-12 footer-bottom-left">
+                    <p>&copy; 2018 WaterSpotter All rights reserved.</p>
+                </div>
+                <div class="col-md-7 col-sm-12 footer-bottom-menu">
+                	<ul class="list-unstyled">
+                		<li><a href="/privacy">Privacy Policy</a></li>
+                	</ul>
+					<p id="back-top"><a href="#top"><i class="fa fa-angle-up"></i></a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
