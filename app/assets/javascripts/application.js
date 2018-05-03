@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require popper
-//= require bootstrap-sprockets
 //= require jquery_ujs
+//= require popper
+//= require bootstrap
 //= require leaflet
 //= require_tree .
 
