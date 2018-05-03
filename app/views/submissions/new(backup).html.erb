@@ -1,0 +1,155 @@
+<div class="wrapper">
+
+<script type="text/javascript">
+    mixpanel.track("Add Location (Page)");
+</script>
+
+<script>
+  var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+</script>
+
+
+<div id='map' class='map-small'>
+    <script>
+    mapboxgl.accessToken = '<%= Figaro.env.mapbox_token %>';
+    
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v9',
+        center: [-118.402, 33.911], // same coordinates as homepage
+        zoom: 10.0 // starting zoom
+      });
+
+      const geolocate = new mapboxgl.GeolocateControl({
+                positionOptions: {
+                enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+      map.addControl(geolocate)
+      setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5)  // automatically click GeoLocate
+
+      map.addControl(new mapboxgl.NavigationControl({
+                options: {showCompass: false}
+      }));
+
+      // locate the user, place value in (hidden) form fields
+      var startPos;
+      navigator.geolocation.watchPosition(function(position) {
+          startPos = position;
+          var startLat = startPos.coords.latitude;
+          var startLong = startPos.coords.longitude;
+
+          document.getElementById("latitude").value = startLat;
+          console.log(latitude);
+          document.getElementById("longitude").value = startLong;
+          console.log(longitude);
+
+          if (document.getElementById("myonoffswitch").value == false) {
+            navigator.geolocation.clearWatch(position);
+            console.log("turn of geolocation")
+          };
+
+      });
+
+
+          navigator.geolocation.clearWatch(startPos);
+
+
+    </script>
+
+</div>
+
+<div class="form-signin">
+
+<!--
+<h3 style="text-align:center;">Add a new WaterSpot</h3>
+-->
+
+  <div class="form-group">
+    <table>
+      <tr>
+        <td class="col-lg" style="padding:0px;">
+          <span id="current"><h5>Use Current Location</h5></span>
+          <span id="manual" class="hidden"><h5>Manual Entry</h5></span>
+        </td>
+        <td class="col-" style="vertical-align: center;">
+
+          <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch"></label>
+        </div>
+
+      </td>
+    </tr>
+    </table>
+
+    <script>
+    // if "myonoffswitch" is unchecked (off position), then reveal lat/long fields, STOP geolocation
+
+    $('#myonoffswitch').change(function(manual){
+      if ($(this).prop('checked') == false){
+        navigator.geolocation.clearWatch(startPos)
+        $('#map').slideToggle()   // hide map
+        $('#current').toggle()    // hide "Current Location" text
+        $('#manual').toggle()     // reveal "Manual Entry" text
+        $('#lat-long').toggle()   // reveal Latitude and Longitude inputs
+        $('#startPos').val("")    // clear startpos
+        $('#latitude').val("").delay( 5000 )
+        $('#longitude').val("").delay( 5000 )
+        map.remove(geolocate)
+
+           // STOP geolocation
+      }
+      // reload the page if "myonoffswitch" is checked back to true
+      if ($(this).prop('checked') == true){
+        location.reload();
+      }
+    });
+
+    </script>
+  </div>
+
+  <%= form_for @submission do |f| %>
+
+      <div class="form-control">
+      <%= f.text_field :name, required: true, placeholder: "Give it a name!" %>
+      </div>
+
+      <div>
+      <%= f.text_area :description, required: true, as: :text, class: "form-control", rows: "3", placeholder: "Describe it! How can we find it? What's it next to? Does the water taste good?" %>
+      </div>
+
+    <hr>
+
+    <div id="lat-long" class="hidden">
+      <div class="form-control">
+      <%= f.text_field :latitude, placeholder: "Latitude", id: "latitude" %>
+      </div>
+
+      <div class="form-control">
+      <%= f.text_field :longitude, placeholder: "Longitude", id: "longitude" %> 
+      </div>
+    </div>
+
+      <div class="hidden">
+      <%= f.label :nickname %><br>
+      <%= f.text_field :nickname, hint: 'leave this field blank' %>
+      </div>
+
+      <!-- add current user email as hidden field -->
+      <div class="hidden">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, :value => current_user.email %>
+      </div>
+
+
+    <div class="form-group">
+    <%= f.submit 'Add WaterSpot to Map!', class: "btn btn-lg btn-primary btn-block" %>
+    <% end %>
+    </div>
+
+
+
+</div>
+</div>
