@@ -97,9 +97,9 @@
 
           </script>
 
-        <!-- Floating "drop pin" button -->
+        <!-- Floating "Current Location button -->
         <div class="mx-auto" style="width: 350px;">
-            <button id="addcurrentlocation" class="btn btn-primary btn-sm btn-block" onclick="addCurrentLocation()">
+            <button id="addcurrentlocation" class="btn btn-primary btn-block" onclick="addCurrentLocation()">
           Add Current Location
           </button>
         </div>
@@ -139,7 +139,7 @@
 
         <!-- Floating "drop pin" button -->
         <div class="mx-auto" style="width: 350px;">
-            <button id="droppin" class="btn btn-primary btn-sm btn-block" onclick="dropPin()">
+            <button id="droppin" class="btn btn-primary btn-block" onclick="dropPin()">
           Drop Pin
           </button>
         </div>
@@ -170,11 +170,11 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="locationDataModal" tabindex="-1" role="dialog" aria-labelledby="locationDataModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add WaterSpot</h5>
+        <h5 class="modal-title" id="locationDataModalLongTitle">Add WaterSpot</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -221,14 +221,14 @@
     navigator.geolocation.clearWatch(navigation);
     map.remove(geolocate);
     // pop up submit modal
-    $("#exampleModalCenter").modal()
-    $('#exampleModalCenter').on('shown.bs.modal', function(e) {
+    $("#locationDataModal").modal()
+    $('#locationDataModal').on('shown.bs.modal', function(e) {
 
           //pass user's lat and long to modal form 
           $(e.currentTarget).find('input[id="latitude"]').val(startLat);
           $(e.currentTarget).find('input[id="longitude"]').val(startLong);
     });
-
+    
   };
 
   // Drop Pin Button
@@ -277,8 +277,8 @@
     var center = map.getCenter()
 
     // pop up submit modal
-    $("#exampleModalCenter").modal()
-    $('#exampleModalCenter').on('shown.bs.modal', function(e) {
+    $('#locationDataModal').modal()
+    $('#locationDataModal').on('shown.bs.modal', function(e) {
 
           //pass center lat and long to modal form 
           $(e.currentTarget).find('input[id="latitude"]').val(center.lat);
