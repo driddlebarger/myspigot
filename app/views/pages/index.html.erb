@@ -2,6 +2,10 @@
     mixpanel.track("View Landing Page");
 </script>
 
+<script>
+  var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+</script>
+
     <!-- Header -->
     <header id="home">
         <nav class="navbar navbar-default" id="main-nav">
@@ -43,8 +47,8 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-1 col-sm-8 intro-info wow fadeIn">
                     <div class="intro-info-content">
-                        <h1><b>Find FREE Water Fountains</b></h1>
-                        <p>Waterspotter is a crowdsourced map of free water fountains for running, cycling, and hiking.</p>
+                        <h1><b>Find Nearby Water Fountains</b></h1>
+                        <p>Waterspotter is a FREE crowdsourced map of water fountains for running, cycling, and hiking.</p>
 
                         <div class="col-sm-10 get-notified">
                             <div class="panel panel-default">
@@ -55,19 +59,15 @@
                                     <%= devise_error_messages! %>
                                     
                                     <%= f.email_field :email, placeholder: "Your Email Address", :required => true %>
-                                    <%= f.submit "Get Free Access", class: 'sign-up-button' %>
+                                    <%= f.submit "See the map!", class: 'sign-up-button' %>
                                 <% end %>
                                 <!-- END Devise Form -->
                                 </div>
                             </div>
                             <!-- /// FACEBOOK SIGN-UP /// -->
-                            <p>-OR-</p> <br>
-                            <!--
-                            <button type="submit" class="btn btn-block btn-social btn-facebook" style="text-align: center">
-                            <i class="fa fa-facebook-official" aria-hidden="true"></i>Sign Up with Facebook</button>
-                            -->
 
-                            <%= link_to '<i class="fa fa-facebook-official" aria-hidden="true"></i>Continue with Facebook'.html_safe, user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook", style: "text-align: center" %>
+
+                            <%= link_to '<i class="fa fa-facebook-official" aria-hidden="true"></i>Continue with Facebook'.html_safe, user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook", style: "text-align: center; display:inline-block; z-index: 1000;" %>
                 
 
                         </div><!-- Ends: .col-sm-12 -->

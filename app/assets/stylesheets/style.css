@@ -2389,6 +2389,8 @@ footer p#back-top a:hover {
 }
 .get-notified {
     padding-top: 40px;
+    padding-left: 0;
+    padding-right:0;
     text-align: center;
 }
 .get-notified h3 {
