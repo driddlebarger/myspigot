@@ -1,15 +1,18 @@
 <%= form_for @submission do |f| %>
 
+   <div class="form-group">
       <div class="form-control">
-      <%= f.text_field :name, required: true, placeholder: "Give it a name!" %>
+      <%= f.text_field :name, required: true, placeholder: "Give it a name!", class: "input-block-level" %>
       </div>
+    </div>
 
-      <div>
-      <%= f.text_area :description, required: true, as: :text, class: "form-control", rows: "3", placeholder: "Describe it! How can we find it? What's it next to? Does the water taste good?" %>
+    <div class="form-group">
+      <div class="form-control">
+      <%= f.text_area :description, required: true, as: :text, rows: "3", placeholder: "Describe it! How can we find it? What's it next to? Does the water taste good?", class: "input-block-level" %>
       </div>
+    </div>
 
-    <hr>
-
+    <!-- Hidden fields -->
     <div id="lat-long" class="hidden">
       <div class="form-control">
       <%= f.text_field :latitude, placeholder: "Latitude", id: "latitude" %>
@@ -25,7 +28,6 @@
       <%= f.text_field :nickname, hint: 'leave this field blank' %>
       </div>
 
-      <!-- add current user email as hidden field -->
       <div class="hidden">
       <%= f.label :email %><br>
       <%= f.text_field :email, :value => current_user.email %>
@@ -33,6 +35,6 @@
 
 
     <div class="form-group">
-    <%= f.submit 'Add WaterSpot to Map!', class: "btn btn-lg btn-primary btn-block" %>
+    <%= f.submit 'Add to Map!', class: "btn btn-primary btn-block" %>
     <% end %>
     </div>

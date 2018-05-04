@@ -34,6 +34,21 @@
       height: calc(100% - 56px - 59px);
     }
 
+  .input-block-level {
+    display: block;
+    width: 100%;
+    min-height: 28px;      
+    .box-sizing(border-box); 
+    border:none;
+  }
+
+  .modal-dialog {
+    top: 150px;
+  }
+
+  .input-block-level:focus{
+    outline: none;
+  }
 </style>
 
 <div class="container-fluid" style="padding:0px;">
@@ -159,7 +174,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add Waterspot</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Add WaterSpot</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
