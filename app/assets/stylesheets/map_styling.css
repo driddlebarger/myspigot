@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 html, body {
     height: calc(100% - 56px);
     min-height: 100%;
@@ -45,7 +47,7 @@ border-radius: 10px;
 }
 
 body {
-  background: #eee !important;  
+  background: #eee !important; 
 }
 
 .wrapper {  
