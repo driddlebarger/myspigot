@@ -11,6 +11,10 @@
       <%= f.text_area :description, required: true, as: :text, rows: "3", placeholder: "Describe it! How can we find it? What's it next to? Does the water taste good?", class: "input-block-level" %>
       </div>
     </div>
+    <div class="form-group">
+      <%= f.check_box :nearby_restroom, {checked: false}, 'Yes', 'No' %> 
+      <%= f.label :nearby_restroom, "There's a restroom here too!"%>
+    </div>
 
     <!-- Hidden fields -->
     <div id="lat-long" class="hidden">

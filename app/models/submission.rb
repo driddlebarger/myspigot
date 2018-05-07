@@ -1,6 +1,7 @@
 class Submission < MailForm::Base
   attribute :name,        :validate => true
   attribute :description, :validate => true   
+  attribute :nearby_restroom
   attribute :latitude
   attribute :longitude
   attribute :nickname,  :captcha  => true

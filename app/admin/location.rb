@@ -2,7 +2,7 @@ ActiveAdmin.register Location do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :name, :description, :latitude, :longitude, :flagged, :submitted_by
+permit_params :name, :description, :latitude, :longitude, :flagged, :submitted_by, :nearby_restroom
 #
 # or
 #
