@@ -15,11 +15,11 @@ before_action :auth_user
     	flash.now[:error] = nil
       #Send email to current_user IF it submits okay
       SubmissionMailer.submission(current_user, @submission).deliver_now
-    	redirect_to home_path, notice: "Thanks for your submission!"
+    	redirect_to home_path, notice: "New WaterSpot added!"
       #Count how many submissions each user makes
       current_user.increment!(:count, 1)
     else
-    	flash.now[:error] = 'Submission could not be completed.'
+    	flash.now[:error] = 'There was an error. Your submission could not be completed.'
     	render :new
     end
   end

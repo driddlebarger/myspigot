@@ -56,10 +56,42 @@
 
 <div class="container-fluid" style="padding:0px;">
   <!-- tabs -->
-      <div class="tab-content" id="nav-tabContent">
+    <div class="tab-content" id="nav-tabContent">
+
+      <!-- Drop Pin tab -->
+      <div class="tab-pane fade show active" id="nav-pin">                
+        <div id='map2' class='map-withnav'></div>
+        <script>
+            mapboxgl.accessToken = '<%= Figaro.env.mapbox_token %>';
+
+            var mapDropPin = new mapboxgl.Map({
+              container: 'map2',
+              style: 'mapbox://styles/mapbox/light-v9',
+                center: [-118.26, 33.97], // starting position [lng, lat]
+                zoom: 9 // starting zoom
+              });
+      
+            // Geolocater box to get in general area
+            var geocoder = new MapboxGeocoder({
+              accessToken: mapboxgl.accessToken
+            });
+            mapDropPin.addControl(geocoder, 'top-left');
+
+            // Add zoom and rotation controls to the map.
+            var navigation = new mapboxgl.NavigationControl();
+            mapDropPin.addControl(navigation);  
+          </script>
+
+          <!-- Floating "drop pin" button -->
+          <div class="mx-auto" style="width: 350px;">
+            <button id="droppin" class="btn btn-primary btn-block" onclick="dropPin()">Drop Pin
+            </button>
+          </div>
+      </div> <!-- end of nav-pin div -->
 
       <!-- Current Location tab -->
-      <div class="tab-pane fade show active" id="nav-location"> 
+      <div class="tab-pane fade" id="nav-location"> 
+        
         <div id='map1' class='map-withnav'></div>
           <script>
           mapboxgl.accessToken = '<%= Figaro.env.mapbox_token %>';
@@ -77,84 +109,49 @@
                       },
                       trackUserLocation: true
                   })
-            map.addControl(geolocate)
-            setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5)  // automatically click GeoLocate
+            // map.addControl(geolocate) --> moved to fire on 2nd tab open event
 
-            map.addControl(new mapboxgl.NavigationControl({
-                      options: {showCompass: false}
-            }));
+            //map.addControl(new mapboxgl.NavigationControl({
+            //          options: {showCompass: false}
+            //}));
 
-            // locate the user
-            var navigation;
-            var startLat;
-            var startLong;
-            map.on('load', function() {
+            var currentLon;
+            var currentLat;
             
-                navigation = navigator.geolocation.watchPosition(function(position) {
-                  startLat = position.coords.latitude;
-                  startLong = position.coords.longitude;
-                  console.log(startLat);
-                  console.log(startLong);
-              });
+            geolocate.on('geolocate', function(e) {  // on geolocate, store user coordinates into variables
+              currentLon = e.coords.longitude;
+              currentLat = e.coords.latitude;
+              // hide addpin button
+              document.getElementById("addcurrentlocation").setAttribute("class", "btn btn-primary btn-block")
             });
 
           </script>
 
         <!-- Floating "Current Location button -->
         <div class="mx-auto" style="width: 350px;">
-            <button id="addcurrentlocation" class="btn btn-primary btn-block" onclick="addCurrentLocation()">
+          <button id="addcurrentlocation" class="hidden" onclick="addCurrentLocation()">
           Add Current Location
           </button>
         </div>
 
-      </div> <!-- end of Current Location tab -->
-
-      <!-- Drop Pin tab -->
-      <div class="tab-pane fade" id="nav-pin">                
-        <div id='map2' class='map-withnav'></div>
-        <script>
-            mapboxgl.accessToken = '<%= Figaro.env.mapbox_token %>';
-
-            var map = new mapboxgl.Map({
-              container: 'map2',
-              style: 'mapbox://styles/mapbox/light-v9',
-                center: [-118.26, 33.97], // starting position [lng, lat]
-                zoom: 9 // starting zoom
-              });
-      
-          // Geolocater box to get in general area
-          var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken
-          });
-          map.addControl(geocoder, 'top-left');
-
-            // Add zoom and rotation controls to the map.
-          var navigation = new mapboxgl.NavigationControl();
-          map.addControl(navigation);
-
-          //map.on('load', function() {
-          //  $('a[data-toggle="tab"]').on('shown.bs.tab', function(){
-              //    map.resize();
-            //  });
-          //});
-      
-          </script>
-
-        <!-- Floating "drop pin" button -->
-        <div class="mx-auto" style="width: 350px;">
-            <button id="droppin" class="btn btn-primary btn-block" onclick="dropPin()">
-          Drop Pin
-          </button>
-        </div>
-      </div> <!-- end of tab pane "nav-pin" div -->
-    </div> <!-- end of tab content div -->
-
+      </div> <!-- end of nav-location tab -->
+    </div> <!-- end of tab-content div -->
 </div>  <!-- end of container div --> 
 
 
+<!-- Bottom nav menu -->
 <nav class="bottom-nav">
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="bottom-nav__action bottom-nav__action--active" id="nav-location-tab" data-toggle="tab" href="#nav-location" role="tab" aria-controls="nav-location" aria-selected="true">
+    
+    <a class="bottom-nav__action bottom-nav__action--active" id="nav-pin-tab" data-toggle="tab" href="#nav-pin" role="tab" aria-controls="nav-pin" aria-selected="true" >
+      <svg class="bottom-nav__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+        <path d="M192 300.813v172.82l-22.015 33.023c-4.75 7.125-15.219 7.125-19.969 0L128 473.633v-172.82a162.221 162.221 0 0 0 64 0zM160 0c79.529 0 144 64.471 144 144s-64.471 144-144 144S16 223.529 16 144 80.471 0 160 0M80 136c0-39.701 32.299-72 72-72a8 8 0 0 0 0-16c-48.523 0-88 39.477-88 88a8 8 0 0 0 16 0z">
+        </path>
+      </svg>
+      <span class="bottom-nav__label">Drop Pin</span>
+    </a>
+
+    <a class="bottom-nav__action" id="nav-location-tab" data-toggle="tab" href="#nav-location" role="tab" aria-controls="nav-location" aria-selected="false">
       <svg class="bottom-nav__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 448c-110.532 0-200-89.451-200-200 0-110.531 89.451-200 200-200 110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200zm91.326-312.131l-33.359 137.779a24.005 24.005 0 0 1-6.772 11.729l-102.64 97.779c-17.104 16.293-45.56.434-39.88-23.024l33.359-137.779a23.997 23.997 0 0 1 6.772-11.729l102.642-97.779c17.285-16.47 45.494-.175 39.878 23.024zM256 224c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32z">
         </path>
@@ -162,15 +159,9 @@
       <span class="bottom-nav__label">Current Location</span>
     </a>
 
-    <a class="bottom-nav__action" id="nav-pin-tab" data-toggle="tab" href="#nav-pin" role="tab" aria-controls="nav-pin" aria-selected="false" >
-      <svg class="bottom-nav__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-        <path d="M192 300.813v172.82l-22.015 33.023c-4.75 7.125-15.219 7.125-19.969 0L128 473.633v-172.82a162.221 162.221 0 0 0 64 0zM160 0c79.529 0 144 64.471 144 144s-64.471 144-144 144S16 223.529 16 144 80.471 0 160 0M80 136c0-39.701 32.299-72 72-72a8 8 0 0 0 0-16c-48.523 0-88 39.477-88 88a8 8 0 0 0 16 0z">
-        </path>
-      </svg>
-      <span class="bottom-nav__label">Drop Pin</span>
-    </a>
   </div>
 </nav>
+<!-- End of bottom nav menu -->
 
 <!-- Modal -->
 <div class="modal fade" id="locationDataModal" tabindex="-1" role="dialog" aria-labelledby="locationDataModalTitle" aria-hidden="true">
@@ -190,7 +181,7 @@
     </div>
   </div>
 </div>
-
+<!-- End of Modal -->
 
 <!-- JavaScript functions -->
 <script>
@@ -202,8 +193,17 @@
           $(this).tab('show');
       });
       // resize map canvas when tab is finished opening (fix 300px bug)
-      $('.nav-tabs a').on('shown.bs.tab', function(){   //could change this to #nav-pin-tab a 
+      $('.nav-tabs a').on('shown.bs.tab', function(){   
           map.resize();
+      });
+      // Turn on geolocation ONLY after 'Current Location' tab is opened
+      $('#nav-location-tab').on('shown.bs.tab', function(){
+        map.addControl(geolocate); //tie geolocate to tab open
+        setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5);  // automatically click GeoLocate 
+      });
+      $('#nav-location-tab').on('hidden.bs.tab', function(){ // turn off geolocation when 2nd tab closes 
+        map.removeControl(geolocate);
+        console.log('close 2nd tab');
       });
   });
 
@@ -217,27 +217,12 @@
     $("#nav-location-tab").removeClass("bottom-nav__action--active");
   });
 
-  //// Javascript functions //////////
-
-  // Add Current Location
-  function addCurrentLocation(){
-    navigator.geolocation.clearWatch(navigation);
-    map.remove(geolocate);
-    // pop up submit modal
-    $("#locationDataModal").modal()
-    $('#locationDataModal').on('shown.bs.modal', function(e) {
-
-          //pass user's lat and long to modal form 
-          $(e.currentTarget).find('input[id="latitude"]').val(startLat);
-          $(e.currentTarget).find('input[id="longitude"]').val(startLong);
-    });
-    
-  };
+  //// Javascript functions ////////
 
   // Drop Pin Button
   function dropPin(){   
     // Figure out where map center is
-    var center = map.getCenter()
+    var center = mapDropPin.getCenter()
 
       // Create popup with "Select Location button"
       var popup = new mapboxgl.Popup({
@@ -252,32 +237,32 @@
       el.className = 'marker';
       var pin = new mapboxgl.Marker(el)
       .setLngLat(center)
-      .addTo(map)
+      .addTo(mapDropPin)
       .setPopup(popup)
       .togglePopup(popup);
 
 
-    // change pin position to center of map (on drag)
-    map.on('drag', function (e) {
-      center = map.getCenter()
-        pin.setLngLat(center)
-    });
+      // change pin position to center of map (on drag)
+      mapDropPin.on('drag', function (e) {
+        center = mapDropPin.getCenter()
+          pin.setLngLat(center)
+      });
 
-    // change pin position to center of map (on zoom)
-    map.on('zoom', function (e) {
-      center = map.getCenter()
-        pin.setLngLat(center)
-    });
+      // change pin position to center of map (on zoom)
+      mapDropPin.on('zoom', function (e) {
+        center = mapDropPin.getCenter()
+          pin.setLngLat(center)
+      });
 
-    // hide addpin button
-    document.getElementById("droppin").setAttribute("class", "hidden")
+      // hide addpin button
+      document.getElementById("droppin").setAttribute("class", "hidden")
   };
 
   // add another function when location is "selected"
   function selectLocation(){
-    
+   
     // get center coordinates (= pin coordinates)
-    var center = map.getCenter()
+    var center = mapDropPin.getCenter()
 
     // pop up submit modal
     $('#locationDataModal').modal()
@@ -287,7 +272,18 @@
           $(e.currentTarget).find('input[id="latitude"]').val(center.lat);
           $(e.currentTarget).find('input[id="longitude"]').val(center.lng);
     });
+  };
 
+  //// Add Current Location /////
+  function addCurrentLocation(){
+    // pop up submit modal
+    $("#locationDataModal").modal()
+    $('#locationDataModal').on('shown.bs.modal', function(e) {
+
+          //pass user's lat and long to modal form 
+          $(e.currentTarget).find('input[id="latitude"]').val(currentLat);
+          $(e.currentTarget).find('input[id="longitude"]').val(currentLon);
+    });
   };
 
 </script>
