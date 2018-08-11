@@ -28,10 +28,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-oauth2', '~> 1.3.1'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'gibbon'
-gem 'mengpaneel'
 gem 'premailer-rails'
 gem 'figaro'
-
 
 
 group :development, :test do
@@ -49,6 +47,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'mengpaneel'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
