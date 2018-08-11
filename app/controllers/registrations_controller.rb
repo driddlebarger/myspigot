@@ -14,7 +14,9 @@ class RegistrationsController < Devise::RegistrationsController
       	@user = current_user
       	mixpanel.track("Sign Up", "ID"          => @user.id,
                                   "Email"       => @user.email)
-	  end
+	  
+      ab_finished('main_header_copy', reset: false)
+    end
 
   end
 

@@ -32,6 +32,7 @@ gem 'premailer-rails'
 gem 'figaro'
 gem 'mengpaneel'
 gem 'redis-rails'
+gem 'split', require: 'split/dashboard'
 
 
 group :development, :test do
