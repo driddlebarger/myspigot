@@ -30,6 +30,8 @@ gem 'acts_as_votable', '~> 0.11.1'
 gem 'gibbon'
 gem 'premailer-rails'
 gem 'figaro'
+gem 'mengpaneel'
+gem 'redis-rails'
 
 
 group :development, :test do
@@ -47,7 +49,7 @@ end
 
 group :production do
   gem 'pg'
-  gem 'mengpaneel'
+
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
