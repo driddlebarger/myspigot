@@ -23,6 +23,7 @@ gem 'will_paginate'
 gem 'api-pagination'
 gem 'mail_form'
 gem 'activeadmin'
+gem 'arctic_admin'
 gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'omniauth-oauth2', '~> 1.3.1'
@@ -33,6 +34,8 @@ gem 'figaro'
 gem 'mengpaneel'
 gem 'redis-rails'
 gem 'split', require: 'split/dashboard'
+gem 'chartkick'
+gem 'groupdate'
 
 
 group :development, :test do

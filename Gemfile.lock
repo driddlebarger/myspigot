@@ -58,6 +58,10 @@ GEM
     api-pagination (4.6.3)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
+    arctic_admin (1.5.0)
+      activeadmin (>= 1.1.0, < 2.0)
+      font-awesome-rails
+      jquery-rails
     arel (7.1.4)
     autoprefixer-rails (7.1.5)
       execjs
@@ -68,6 +72,7 @@ GEM
       sass (>= 3.4.19)
     builder (3.2.3)
     byebug (9.1.0)
+    chartkick (3.0.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -104,6 +109,8 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    groupdate (4.0.1)
+      activesupport (>= 4.2)
     has_scope (0.7.1)
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
@@ -311,13 +318,16 @@ DEPENDENCIES
   activeadmin
   acts_as_votable (~> 0.11.1)
   api-pagination
+  arctic_admin
   bootstrap (~> 4.0.0.beta)
   byebug
+  chartkick
   coffee-rails (~> 4.2)
   devise
   figaro
   font-awesome-rails
   gibbon
+  groupdate
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
