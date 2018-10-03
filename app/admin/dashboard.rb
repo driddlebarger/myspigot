@@ -8,7 +8,7 @@ ActiveAdmin.register_page "Dashboard" do
     #
     section "Users" do
         div do
-            line_chart User.group_by_week(:created_at).count        
+            line_chart User.group_by_day(:created_at).count        
         end
     end
 
