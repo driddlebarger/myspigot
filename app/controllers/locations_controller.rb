@@ -64,6 +64,8 @@ class LocationsController < ApplicationController
                                                    "User ID"       => current_user.id)
         #Send email receipt to user
         SubmissionMailer.submission(current_user, @location).deliver_now
+        #Send email receipt to admin
+        LocationAddedMailer.location_added(current_user, @location).deliver_now
         #Count how many submissions each user makes
         current_user.increment!(:count, 1)
         #Redirect to show page
