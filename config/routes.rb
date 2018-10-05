@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
   
-  get 'submit' => "submissions#new"
+  get 'submit' => "locations#new" #update as part of auto_submit epic
   match '/submissions', to: 'submissions#new', via: 'get'
   resources "submissions", only: [:new, :create]
 

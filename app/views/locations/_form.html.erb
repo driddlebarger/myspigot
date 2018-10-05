@@ -1,36 +1,40 @@
-<%= form_for(location) do |f| %>
-  <% if location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(location.errors.count, "error") %> prohibited this location from being saved:</h2>
+<%= form_for @location do |f| %>
 
-      <ul>
-      <% location.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+   <div class="form-group">
+      <div class="form-control">
+      <%= f.text_field :name, required: true, placeholder: "Give it a name!", class: "input-block-level" %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <div class="form-control">
+      <%= f.text_area :description, required: true, as: :text, rows: "3", placeholder: "Describe it! How can we find it? What's it next to? Does the water taste good?", class: "input-block-level" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.check_box :nearby_restroom, {checked: false}, 'Yes', 'No' %> 
+      <%= f.label :nearby_restroom, "There's a restroom here too!"%>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_field :description, class: "form-control" %>
-  </div>
+    <!-- Hidden fields -->
+    <div id="lat-long" class="hidden">
+      <div class="form-control">
+      <%= f.text_field :latitude, placeholder: "Latitude", id: "latitude" %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :latitude %>
-    <%= f.text_field :latitude, class: "form-control" %>
-  </div>
+      <div class="form-control">
+      <%= f.text_field :longitude, placeholder: "Longitude", id: "longitude" %> 
+      </div>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :longitude %>
-    <%= f.text_field :longitude, class: "form-control" %>
-  </div>
+      <div class="hidden">
+      <%= f.label :email %><br>
+      <%= f.text_field :email, :value => current_user.email %>
+      </div>
 
-  <%= f.submit 'Submit', class: "btn btn-secondary" %>
 
-<% end %>
+    <div class="form-group">
+    <%= f.submit 'Add to Map!', class: "btn btn-primary btn-block" %>
+    <% end %>
+    </div>
+

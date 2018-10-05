@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy, :verify, :flag]
-  before_action :authenticate_admin_user!, except: [:index, :show, :verify, :flag]
+  before_action :authenticate_admin_user!, except: [:index, :show, :verify, :flag, :create, :new] #added create method
   
 
   # GET /locations
