@@ -152,9 +152,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    mail_form (1.7.0)
-      actionmailer (>= 3.2, < 5.2)
-      activemodel (>= 3.2, < 5.2)
     mengpaneel (0.0.3)
       activesupport
       mixpanel-ruby
@@ -333,7 +330,6 @@ DEPENDENCIES
   kaminari
   leaflet-rails
   listen (~> 3.0.5)
-  mail_form
   mengpaneel
   omniauth-facebook
   omniauth-oauth2 (~> 1.3.1)

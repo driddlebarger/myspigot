@@ -110,7 +110,7 @@
                       },
                       trackUserLocation: true
                   })
-            // map.addControl(geolocate) --> moved to fire on 2nd tab open event
+            map.addControl(geolocate)
 
             //map.addControl(new mapboxgl.NavigationControl({
             //          options: {showCompass: false}
@@ -199,11 +199,13 @@
       });
       // Turn on geolocation ONLY after 'Current Location' tab is opened
       $('#nav-location-tab').on('shown.bs.tab', function(){
-        map.addControl(geolocate); //tie geolocate to tab open
-        setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5);  // automatically click GeoLocate 
+        console.log("current location tab opened")
+        geolocate.trigger(); // trigger geolocate on opening of 2nd tab
+        // setTimeout(geolocate._onClickGeolocate.bind(geolocate), 5);  // deprecated, now use trigger method above
       });
       $('#nav-location-tab').on('hidden.bs.tab', function(){ // turn off geolocation when 2nd tab closes 
-        map.removeControl(geolocate);
+        geolocate.trigger();
+        //map.removeControl(geolocate); 
         console.log('close 2nd tab');
       });
   });
