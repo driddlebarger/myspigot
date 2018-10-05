@@ -59,11 +59,15 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
-        # send email to user
+        #Log action in Mixpanel
+        mixpanel.track("Add Location (Submitted)", "User"          => current_user.email,
+                                                   "User ID"       => current_user.id)
+        #Send email receipt to user
         SubmissionMailer.submission(current_user, @location).deliver_now
         #Count how many submissions each user makes
         current_user.increment!(:count, 1)
+        #Redirect to show page
+        format.html { redirect_to @location, notice: 'WaterSpot added! Check it out:' }
       else
         format.html { render :new }
       end
