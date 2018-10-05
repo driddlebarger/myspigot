@@ -4,9 +4,9 @@ class SubmissionMailer < Devise::Mailer
   default from: 'admin@waterspotterapp.com'
 
 
-  def submission(user, submission)
+  def submission(user, location)
     @user = user
-    @submission = submission
+    @location = location
 
     mail to: @user.email, subject: "WaterSpotter: New Location Added!"
   end
