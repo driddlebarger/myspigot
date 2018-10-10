@@ -12,13 +12,8 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  if ENV['REDIS_URL']
-    config.action_controller.perform_caching = true
-    config.cache_store = :redis_store
-  else
-    config.action_controller.perform_caching = false
-  end
 
+  config.action_controller.perform_caching = false
   # REPLACED BELOW code when adding Redis
   # Enable/disable caching. By default caching is disabled.
   #if Rails.root.join('tmp/caching-dev.txt').exist?

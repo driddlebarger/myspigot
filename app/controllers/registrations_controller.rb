@@ -15,8 +15,6 @@ class RegistrationsController < Devise::RegistrationsController
       	mixpanel.track("Sign Up", "ID"          => @user.id,
                                   "Email"       => @user.email)
 	  
-      ab_finished(:main_header_copy)
-      # end AB test
     end
 
   end

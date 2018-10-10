@@ -31,9 +31,6 @@ Rails.application.routes.draw do
   get 'privacy' => "pages#privacy"
   get 'test' => "pages#test"
 
-  
-  # For Split dashboard
-  mount Split::Dashboard, at: 'split'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

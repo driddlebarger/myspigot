@@ -31,8 +31,6 @@ gem 'gibbon'
 gem 'premailer-rails'
 gem 'figaro'
 gem 'mengpaneel'
-gem 'redis-rails'
-gem 'split', require: 'split/dashboard'
 gem 'chartkick'
 gem 'groupdate'
 
