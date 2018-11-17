@@ -172,7 +172,7 @@ body {
 display: block;
 width: 100%;
 min-height: 28px;      
-.box-sizing(border-box); 
+box-sizing: border-box;
 border:none;
 }
 
@@ -184,4 +184,4 @@ top: 100px;
 outline: none;
 }
 
-
+}
