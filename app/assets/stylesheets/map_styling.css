@@ -139,4 +139,49 @@ body {
     outline: none;
   }
 
+#geocoder-container > div {
+    min-width:50%;
+    margin-left:25%;
 }
+
+.mapboxgl-popup {
+    padding: 0px;
+  }
+
+#droppin{
+  position: absolute;
+  margin: 0 auto;
+  bottom: 100px;
+  width: 350px;
+}
+
+#addcurrentlocation{
+  position: absolute;
+  margin: 0 auto;
+  bottom: 100px;
+  width: 350px;
+}
+
+.map-withnav {
+    position: absolute;
+    width: 100%;
+  height: calc(100% - 56px - 59px);
+}
+
+.input-block-level {
+display: block;
+width: 100%;
+min-height: 28px;      
+.box-sizing(border-box); 
+border:none;
+}
+
+.modal-dialog {
+top: 100px;
+}
+
+.input-block-level:focus{
+outline: none;
+}
+
+
