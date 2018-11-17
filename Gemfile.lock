@@ -115,6 +115,8 @@ GEM
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
     hashie (3.5.7)
+    heroku-deflater (0.6.3)
+      rack (>= 1.4.5)
     htmlentities (4.3.4)
     i18n (0.9.0)
       concurrent-ruby (~> 1.0)
@@ -295,6 +297,7 @@ DEPENDENCIES
   font-awesome-rails
   gibbon
   groupdate
+  heroku-deflater
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
