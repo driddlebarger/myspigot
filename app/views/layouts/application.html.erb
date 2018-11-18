@@ -18,7 +18,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
-
+    <!-- cookie for intro modal -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
 	  <link href='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
 
@@ -123,5 +124,31 @@
     <!-- main content -->
 	  <%= yield %>
      
+    <!-- welcome modal -->
+    <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="top: 100px;">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h4><b>Welcome.</b></h4>
+            <p>We're building a map of all the free water fountains in SoCal, so we can ride our bikes, run, hike, and explore new places, without worrying about running out of water.<p>
+            <p>If this is your first time here, <strong>please ADD some new WaterSpots that you know of. It's really easy!</strong></p>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary btn-block">Got it!</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <!-- end of welcome modal -->
+    
+    <!-- show welcome modal for first visit -->
+    <script>
+        $(document).ready(function() {
+          if (Cookies.get('welcome') == null) {
+            $('#welcomeModal').modal('show');
+            Cookies.set('welcome', 'true', { expires: 30});
+          }
+
+     });
+    </script>
+
   </body>
 </html>
