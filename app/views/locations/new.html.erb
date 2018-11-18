@@ -201,7 +201,7 @@
                   </path>
                 </svg>
             </td>
-            <td><b>Drop Pin</b> (default): Manually add a spot to the map by dropping a pin. This works best when you're not physically at the location.</td>
+            <td><small><b>Drop Pin</b> (default): Manually add a spot to the map by dropping a pin. This works best when you're not physically at the location.</small></td>
           </tr>
           <tr>
             <td> 
@@ -210,7 +210,7 @@
                 </path>
               </svg>
             </td>
-            <td><b>Current Location:</b> This will add your current location to the map. This is best if you're physically at the location and using a smartphone.</td>
+            <td><small><b>Current Location:</b> This will add your current location to the map. This is best if you're physically at the location and using a smartphone.</small></td>
           </tr>
         </table>
         <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary btn-block">Got it!</button>
@@ -230,7 +230,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Zoom in / pan the map with your thumbs (or mouse) until the water icon reaches your desired location, then tap "Select Location". Zoom in as much as you can in order to be as accurate as possible. The icon will remain at the center of the screen.</p>
+        <small><p>Zoom in / pan the map with your thumbs (or mouse) until the water icon reaches your desired location, then tap "Select Location". Zoom in as much as you can in order to be as accurate as possible. The icon will remain at the center of the screen.</p></small>
         <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary btn-block">Got it!</button>
       </div>
     </div>
@@ -248,7 +248,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Allow WaterSpotter to use your Current Location. Then wait until your location is shown on the map (blue dot), and click "Add Current Location". If your location isn't showing up, try clicking the "wheel" icon on the upper right part of the map.</p>
+        <small><p>Allow WaterSpotter to use your Current Location. Then wait until your location is shown on the map (blue dot), and click "Add Current Location". If your location isn't showing up, try clicking the "wheel" icon on the upper right part of the map.</p></small>
         <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary btn-block">Got it!</button>
       </div>
     </div>
@@ -281,13 +281,27 @@
 <script>
   $(document).ready(function(){
  
-      if (sessionStorage.getItem('#tourModal') !== 'true') {
+      if (localStorage.getItem('#tourModal') !== 'true') {
         $('#tourModal').modal('show');
 
         // Only allow #tourModal to open on first visit
-        sessionStorage.setItem('#tourModal', 'true');
+        localStorage.setItem('#tourModal', 'true');
       }
 
+      if (localStorage.getItem('#dropPinModal') !== 'true') {
+        $('#dropPinModal').modal('show');
+
+        // Only allow #dropPinModal to open on first visit
+        localStorage.setItem('#dropPinModal', 'true');
+      }
+
+      if (localStorage.getItem('#currentLocationModal') !== 'true') {
+        $('#currentLocationModal').modal('show');
+
+        // Only allow #currentLocationModal to open on first visit
+        localStorage.setItem('#currentLocationModal', 'true');
+      }
+      
     //////// Tab stuff //////////
     // Show tab content on click
 
