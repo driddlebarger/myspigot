@@ -49,30 +49,40 @@
                     <div class="intro-info-content">
                         
                         <h1><b>
-                        Find Nearby Water Fountains    
+                        A 100% Free, Crowdsourced Map of Water Fountains
                         </b></h1>
-                        <p>Waterspotter is a FREE crowdsourced map of water fountains for running, cycling, and hiking.</p>
+                        <p>Waterspotter helps you find water fountains for running, cycling, and hiking.</p>
+
+                        <div class="panel-body">
+                            <%= link_to 'View the Map', home_path, class: "btn cta-btn" %> 
+                        </div>
+
+                        <!--
 
                         <div class="col-sm-10 get-notified">
+
                             <div class="panel panel-default">
                                 <div class="panel-body">
 
-                                <!-- DEVISE Form For -->
                                 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
                                     <%= devise_error_messages! %>
                                     
                                     <%= f.email_field :email, placeholder: "Your Email Address", :required => true %>
                                     <%= f.submit "See the map!", class: 'sign-up-button' %>
                                 <% end %>
-                                <!-- END Devise Form -->
+
                                 </div>
                             </div>
-                            <!-- /// FACEBOOK SIGN-UP /// -->
-
+                   
+         
 
                             <%= link_to '<i class="fa fa-facebook-official" aria-hidden="true"></i>Continue with Facebook'.html_safe, user_facebook_omniauth_authorize_path, class: "btn btn-block btn-social btn-facebook", style: "text-align: center; display:inline-block; z-index: 1000;" %>
+
+                       
                 
-                        </div><!-- Ends: .col-sm-12 -->
+                        </div>  Ends: .col-sm-12 -->
+
+
                     </div>
                 </div><!-- Ends: .intro-info -->
                 
